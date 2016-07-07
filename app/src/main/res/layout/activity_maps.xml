@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"/>
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="br.ufg.antenado.antenado.MapsActivity" />
+        android:layout_below="@+id/main_toolbar"
+        tools:context=".ui.MapsActivity" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="52dp"

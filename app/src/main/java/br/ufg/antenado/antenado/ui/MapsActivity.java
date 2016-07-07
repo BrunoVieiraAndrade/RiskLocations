@@ -1,4 +1,4 @@
-package br.ufg.antenado.antenado;
+package br.ufg.antenado.antenado.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +11,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
+import br.ufg.antenado.antenado.Callback;
+import br.ufg.antenado.antenado.MapController;
+import br.ufg.antenado.antenado.R;
 import br.ufg.antenado.antenado.model.Ocurrence;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
