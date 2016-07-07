@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="cf16220db9128d91a215aedc739584181d5ca6a4">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-9.0.2_100183f5195e9ed95061edb2692304538475e80a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="51a11c41a08f099a204e1b8dcc04f27217de50ec">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.0.2_25086f103ae9edd9e6284c33ca95c856c9ba39d5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_e3f59c64a1d6fc0fd27060dfc041546fa90e86bf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_1b08690aac76483424fa018c57447a3a7f97f5b3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.2_64e77df89e9c4671c1b270eb09ac4ac872f16539/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="d9ea4cdaafa29ec4651d6e4715788d3fcaa7b913">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.0.2_705d912fbb9bca7e0c6ef9d6af198c62d2360819/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.0.0_3c0da867489a9dceeeafb147bea1c52dbbc121ad/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="e11da70cff6a544a45cdc21f419802d9bb9043ac">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.0.2_abddbab5ddd2c8f7954f1a8b7a247c00daa89c10/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="b8e0372ca6dc89ac4fe22b76eeea4f68ece435b8">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.0.2_f07f43d4bb2c812049d8d83eef9e585ccc726104/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="8c0fc9b1ea0bac0cb31d60c8b1bf2feb0518e3a9">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.0.2_71864eb06905483a72af5ded9b68bcf8adaced5d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-23.0.0_0fbb9c23d66d6a106a29fb702d57448933ffaab6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="604ecf403feb0084dc6d0c12f1677a490cf45e4c">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-9.0.2_a7312f21d09cba25cac297d06eb663dbf9954431/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="7e52b440a26498c56b4f263e215223b5451c955e">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.0.2_88281d6b715c4bd40043c2db6616c1918f15df1d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="e6970f0554f9508c041f1f6960af15cc888c9f35">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.0.2_e844f9d0e1a434d872ac844284d1964c96a77625/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="143813b18381b28de1e04aae1d92fcb374a0add9">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-9.0.2_b025df697cdeb067abcda321ffe81d24c545e12e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="77b6afbc3879de32935b4d8df477b4cdde8e1c0b">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_2e664afe938ad74629654facce2ca272ed3d64e0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_0a50a031bc96aeb816f1c8453498f2e6ad104e4e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="6ff48ef26bc539c78af4aa061cb9bad6abcbf5e8">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-9.0.2_c46383794dd50741cb42436cdd211a8e520841f9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="829c6e46cb221c2102801221c648b77113743e81">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.0.2_7f99de3878839e9789041da1f101d097087b1ec0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fc29308a7a8f6d4407b34634eb48fb8b817f9b23">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.0.0_b479bc67a68c808bf3d2f948fda7793a534b01ea/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="a498fab72f8663c26fbf3d4496eb6b673b17bcae">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-9.0.2_de3f8598123d5fb884c1459af36f137b850fd88a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="4ec890171a97b5ab98292f131aa784e0f3792c73">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.0.2_0a9a0004c3c701b3b9c8b724b6889e0fe00db6e6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="f399a2fde7888450cadcaec4974bfd169d8cce43">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-9.0.2_d6114075ed46c55a3a19f8526ce2da5d326efb0e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_c24b0a829ed35d84dda35f48b4f6c7d32a1df20a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.0.2_a3fb77ed075b3602cd15f0e5be22c2292a8a0d8e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="f2774b1e02e5fbc524590311a744263c3b152d63">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.0.2_52c6f3c60a81bf020c2340be25e7e353030f7fca/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_6c608f2f842d4236815484b0589f7e92c0a01fa5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_d68e79c3d4bc554784aa8d4b4a9c5fb642b7a5b5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="53f10fcd322a3931495d6ca2078a81f4957cdbce">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-9.0.2_bfbff5f50ab21cc8630390eee508c23fbd691e52/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.0.2_592f75b8315aaf70ea26630af08868e770740c80/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="20e1a0f0de6276a5f36062b655f8b20f8cc00cc4">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.0.2_96d13798c3a5040a8eb30c1e73241949623c6833/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="bc156efaaee99f1ef6bf471347373a4cbb28e2a1">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.0.2_32b8d79c2a5fce0ef68cd1cce1e5c13735dbcc34/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2ab5be19bbd34bae74662ea6b2d4451314d92d97">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.0.2_e283aabf7c13f2dbec72bf4a36edfda7306c98ec/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="568d5bda0b4d51f90d978ace369bb9ad024d2057">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.0.2_e9d0e0b91271aea1aeec763f223cf1a11fb40155/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="5ff0cbb89dcc77370bbb056eb08e3909ba1fead5">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c571818712810a5c700578340915efbf77d14b6b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_9eddab500c97f58041d43d347c5721dfd51c1e6c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_a00ed76edcc4852f83be096f334ed8876f8f85a6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="9819419ce8d79f3f81a0fc70f9345ac8c843af9c">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.0.2_b7a89a1fc3e0b2d36e19584084f92c5c8db852b1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="0c835e9f3875cf245877c9b17d1c69bc98f16057">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.0.2_d9adeec55beba9131d1f728c8168844b60cb9e87/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="79e298d7fed2fcada58da7032d07d34ee198a545">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.0.2_5c9fe118e3db60e28d263aee847be4570feb91be/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="6c58c14d15602fea2c50138c73bb107e8b832b62">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-9.0.2_445d680939a4ecbdb8c9662667acc7bb933c5fd7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="b6af089f583d547bcffc0689b2e80bc7aaa54b15">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-9.0.2_769a7ff45c680e3500553ed950981e0f591b4911/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="92a1d5f71b0fc8938f1d3f2e6ef984b52b894b4d">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-9.0.2_404e385416a6824a161285803251c676aad30cec/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0_b2b6f0233828bf39f174a83f312260afa2a150fe/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fe5b47e764869f1076cb9cfe12801ed2ef4e9117">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.0.2_e34a6ef40d4aa99abf5539ea6477468164ac91c6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="f4fb6981392ca7680d02fd57d26d6124c141d9d9">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.0.2_caecc5c0469c98497c52a220be9bef899aa76e5f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="894922f67adeaaef51f077a29e315da21a3382d3">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.0.0_d75f1873ffa21094d46c33d73c247ea06406d89a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.2_582fee3fe0d3240dc9aff9348f5fdb1fd68812ad/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_cc6051c07a11be59e93d5e1ba881e96475737a17/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="cd4c7c54e15d9ccbc448384fa2c4684d69ca73f0">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.0.2_a6631fbc7e74a33601222215662557589c4a10d2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="a45bc1ed812137b21dddd1cedaa3712b308f0b3f">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.0.2_2c1406b231c50552a835dc6b87d57e940ad56b61/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="a511c684ea4c2cf31a3377d51e7677cb76696e07">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.0.2_e2c23ae7263997a66b8a96261019ca94ebf2a6bc/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="060a7157438a0b1b0706b99c430fb3ecbc5a79a4">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.0.2_89bba46c6d54a7334b4c9b54630c58ee2c206f52/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="b3d0809a742c5f768c6aa9efc6decd5c1d6cd227">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.0.2_1916b19f60629beacc5d84226f5d785b7537e7b5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="c96952c162c9f6076f44c5939982cb35491442ea">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-9.0.2_b43dd328164c37b05c456094dde2573a57f8d7c9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="d900f2a1ff098cac8befe6c023d723e9afb154be">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.0.2_3e65380d4a9294769772d89aed83245703893a43/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.0.0_c9a12479a6198e99ea9272efa7aa164f208234de/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="764d32faf85bc6f7bd2cdcb3a70a482c1884fdd2">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-9.0.2_b76d32a51f02d9b076e20ff260e192510c8d54b9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="922c24fbfc4247947fcfaf2b95f295a16a8c3d17">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.0.2_a01f275a99203cfe06b0a068be6b3a35324e821f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fa472b7cbd3897bf6bed6068ac0b00e494987688">
+        <dex dex="/Users/diogojayme/Desktop/AndroidProjetos/Antenado/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.0.2_739b4a244209820e8f632ea865ce03c039610090/classes.dex" />
+    </item>
+
+</items>
