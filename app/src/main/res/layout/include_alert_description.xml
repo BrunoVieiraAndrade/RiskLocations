@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/maps_top_container"
-    android:visibility="gone"
     android:animateLayoutChanges="true"
     android:background="@color/colorWhite">
 
@@ -20,24 +19,46 @@
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/alert_description"
+    <RelativeLayout
+        android:id="@+id/alert_description_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/description_example"
         android:layout_below="@+id/alert_title"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/description_image"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_description"/>
+
+        <TextView
+            android:id="@+id/alert_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/description_image"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/description_example"
+            />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/alert_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
+        android:drawableLeft="@drawable/ic_location"
         android:text="@string/address_sample"
-        android:layout_below="@+id/alert_description"
+        android:layout_below="@+id/alert_description_container"
         android:layout_centerHorizontal="true" />
 
 
