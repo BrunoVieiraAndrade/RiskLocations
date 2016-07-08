@@ -1,7 +1,10 @@
 package br.ufg.antenado.antenado.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -23,8 +26,11 @@ import br.ufg.antenado.antenado.R;
 import br.ufg.antenado.antenado.model.Ocurrence;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+
+    @Bind(R.id.create_alert) FloatingActionButton createAlert;
 
     private GoogleMap mMap;
 
@@ -98,5 +104,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         return false;
+    }
+
+    @OnClick(R.id.create_alert)
+    void onCreateAlertClick(){
+        startActivity(new Intent(this, AlertActivity.class));
     }
 }

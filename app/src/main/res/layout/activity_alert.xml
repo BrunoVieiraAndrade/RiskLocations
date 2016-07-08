@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufg.antenado.antenado.ui.AlertActivity">
+
+
+    <EditText
+        android:id="@+id/alertTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Título"
+        android:ems="14"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
+
+    <EditText
+        android:id="@+id/alertDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Conte-nos o que aconteceu"
+        android:ems="14"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/alertTitle"/>
+
+    <Spinner
+        android:id="@+id/alert_severity"
+        android:layout_width="295dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/alertDescription">
+    </Spinner>
+
+    <Button
+        android:id="@+id/enviar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Enviar"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/alert_severity"/>
+
+</RelativeLayout>

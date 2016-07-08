@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Antenado</string>
     <string name="title_activity_maps">Alertas</string>
+    <string name="criar_alerta">Criar Alerta</string>
 </resources>
