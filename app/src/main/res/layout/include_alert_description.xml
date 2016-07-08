@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/maps_top_container"
+    android:visibility="gone"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/alert_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample alert"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/alert_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Fui roubado nesse caralho, o cara estava de
+        bicicleta e roubando pra valer fez o limpa"
+        android:layout_below="@+id/alert_title"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/alert_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Casinha da putaria, rua 69"
+        android:layout_below="@+id/alert_description"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

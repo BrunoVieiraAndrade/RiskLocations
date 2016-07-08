@@ -8,7 +8,9 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="52dp"/>
+        android:layout_height="52dp"
+        android:titleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimary" />
 
     <fragment
         android:id="@+id/map"
@@ -18,13 +20,48 @@
         android:layout_below="@+id/main_toolbar"
         tools:context=".ui.MapsActivity" />
 
+    <include
+        android:layout_below="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/include_alert_description" />
+
     <android.support.design.widget.FloatingActionButton
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="66dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_mode_edit_white_48dp"/>
 
+    <RelativeLayout
+        android:id="@+id/maps_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8 min"
+            android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:drawableLeft="@drawable/ic_action_schedule" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.9km"
+            android:gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/ic_communication_location_on" />
+
+    </RelativeLayout>
 </RelativeLayout>
