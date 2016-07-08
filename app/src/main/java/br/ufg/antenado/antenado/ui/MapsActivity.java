@@ -1,9 +1,16 @@
 package br.ufg.antenado.antenado.ui;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,7 +26,10 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,20 +41,27 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     public final static int ALERT_CREATED = 10;
 
     private GoogleMap mMap;
     HashMap<Marker, Occurrence> markerInformation;
 
-    @Bind(R.id.main_toolbar) Toolbar toolbar;
-    @Bind(R.id.maps_top_container) View topContainer;
-    @Bind(R.id.maps_bottom_container) View bottomContainer;
-    @Bind(R.id.create_alert) FloatingActionButton createAlert;
-    @Bind(R.id.alert_title) TextView alertTitle;
-    @Bind(R.id.alert_description) TextView alertdescription;
-    @Bind(R.id.time_ago) TextView timeAgo;
+    @Bind(R.id.main_toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.maps_top_container)
+    View topContainer;
+    @Bind(R.id.maps_bottom_container)
+    View bottomContainer;
+    @Bind(R.id.create_alert)
+    FloatingActionButton createAlert;
+    @Bind(R.id.alert_title)
+    TextView alertTitle;
+    @Bind(R.id.alert_description)
+    TextView alertdescription;
+    @Bind(R.id.time_ago)
+    TextView timeAgo;
 
 
     @Override
@@ -55,7 +72,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerInformation = new HashMap<>();
         setSupportActionBar(toolbar);
 
-        if(getSupportActionBar()!= null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Alertas");
             toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         }
@@ -66,17 +83,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onBackPressed() {
         System.out.println();
-        if(topContainer.getVisibility()== View.VISIBLE &&bottomContainer.getVisibility() == View.VISIBLE){
-            topContainer.setVisibility(View.GONE);
-            bottomContainer.setVisibility(View.GONE);
+        if (topContainer.getVisibility() == View.VISIBLE && bottomContainer.getVisibility() == View.VISIBLE) {
+            topContainer.setVisibility(View.INVISIBLE);
+            bottomContainer.setVisibility(View.INVISIBLE);
             createAlert.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             super.onBackPressed();
-
         }
     }
 
-    private void createView(){
+    private void createView() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -84,7 +100,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        new TedPermission(this)
+                .setPermissionListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+                        if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+
+                        mMap.setMyLocationEnabled(true);
+                    }
+
+                    @Override
+                    public void onPermissionDenied(ArrayList<String> arrayList) {
+
+                    }
+                })
+                .setDeniedMessage("Adicione permissão para pegar sua localização atual")
+                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+                .check();
+
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnMapClickListener(this);
         MapController.listOccurrences(new Callback<List<Occurrence>>() {
             @Override
             public void onSuccess(List<Occurrence> occurrences) {
@@ -105,7 +143,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         Occurrence occurrence = markerInformation.get(marker);
         alertTitle.setText(occurrence.getTitle());
         alertdescription.setText(occurrence.getDescription());
@@ -132,7 +169,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .build();                   // Creates a CameraPosition from the builder
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+        if(getMyLocation() != null) {
+            float[] results = new float[1];
+            Location.distanceBetween(getMyLocation().getLatitude(), getMyLocation().getLongitude(),
+                    marker.getPosition().latitude, marker.getPosition().longitude, results);
+            int km = (int) (results[0] / 1000);
+            System.out.println(km);
+
+        }
         return false;
+    }
+
+    private Location getMyLocation(){
+        LocationManager locationManager = (LocationManager)
+                getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+
+        if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+
+        Location location = locationManager.getLastKnownLocation(locationManager
+                .getBestProvider(criteria, false));
+
+        return location;
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        topContainer.setVisibility(View.INVISIBLE);
+        bottomContainer.setVisibility(View.INVISIBLE);
+        createAlert.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.create_alert)
@@ -159,4 +226,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
     }
+
 }
