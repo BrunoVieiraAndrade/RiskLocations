@@ -2,4 +2,7 @@
     <string name="app_name">Antenado</string>
     <string name="title_activity_maps">Alertas</string>
     <string name="criar_alerta">Criar Alerta</string>
+    <string name="connection_problem">Ocorreu um erro. Tente novamente.</string>
+    <string name="description_example">Fui roubado nesse caralho, o cara estava de bicicleta e roubando pra valer fez o limpa</string>
+    <string name="address_sample">Casinha da Joana, rua 69</string>
 </resources>

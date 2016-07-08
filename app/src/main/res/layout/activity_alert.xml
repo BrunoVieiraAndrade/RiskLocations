@@ -3,8 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="br.ufg.antenado.antenado.ui.AlertActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/alert_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        app:titleTextColor="@color/colorWhite"
+        app:subtitleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimary" />
 
     <EditText
         android:id="@+id/alertTitle"
@@ -12,9 +20,9 @@
         android:layout_height="wrap_content"
         android:hint="Título"
         android:ems="14"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp" />
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/alert_toolbar"/>
 
     <EditText
         android:id="@+id/alertDescription"

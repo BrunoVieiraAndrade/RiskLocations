@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.ufg.antenado.antenado.api.ApiManager;
 import br.ufg.antenado.antenado.api.services.OcurrencesService;
-import br.ufg.antenado.antenado.model.Ocurrence;
+import br.ufg.antenado.antenado.model.Occurrence;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -13,11 +13,11 @@ import retrofit2.Response;
  */
 public class MapController {
 
-    public static void listOccurrences(final Callback<List<Ocurrence>> callback){
-        Call<List<Ocurrence>> call =  ApiManager.create(OcurrencesService.class).listOccurrences();
-        call.enqueue(new retrofit2.Callback<List<Ocurrence>>() {
+    public static void listOccurrences(final Callback<List<Occurrence>> callback){
+        Call<List<Occurrence>> call =  ApiManager.create(OcurrencesService.class).listOccurrences();
+        call.enqueue(new retrofit2.Callback<List<Occurrence>>() {
             @Override
-            public void onResponse(Call<List<Ocurrence>> call, Response<List<Ocurrence>> response) {
+            public void onResponse(Call<List<Occurrence>> call, Response<List<Occurrence>> response) {
                 if(response.isSuccessful()){
                     callback.onSuccess(response.body());
                 }else{
@@ -27,7 +27,29 @@ public class MapController {
             }
 
             @Override
-            public void onFailure(Call<List<Ocurrence>> call, Throwable t) {
+            public void onFailure(Call<List<Occurrence>> call, Throwable t) {
+                //Something went wrong
+                callback.onError(t.getMessage());
+            }
+        });
+
+    }
+
+    public static void createAlert(Occurrence occurrence, final Callback<Occurrence> callback){
+        Call<Occurrence> call =  ApiManager.create(OcurrencesService.class).createAlert(occurrence);
+        call.enqueue(new retrofit2.Callback<Occurrence>() {
+            @Override
+            public void onResponse(Call<Occurrence> call, Response<Occurrence> response) {
+                if(response.isSuccessful()){
+                    callback.onSuccess(response.body());
+                }else{
+                    callback.onError(response.message());
+                    //Something went wrong
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Occurrence> call, Throwable t) {
                 //Something went wrong
                 callback.onError(t.getMessage());
             }

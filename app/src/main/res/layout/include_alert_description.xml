@@ -2,12 +2,12 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/maps_top_container"
     android:visibility="gone"
+    android:animateLayoutChanges="true"
     android:background="@color/colorWhite">
 
     <TextView
@@ -26,8 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Fui roubado nesse caralho, o cara estava de
-        bicicleta e roubando pra valer fez o limpa"
+        android:text="@string/description_example"
         android:layout_below="@+id/alert_title"
         android:layout_centerHorizontal="true" />
 
@@ -37,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:text="Casinha da putaria, rua 69"
+        android:text="@string/address_sample"
         android:layout_below="@+id/alert_description"
         android:layout_centerHorizontal="true" />
 

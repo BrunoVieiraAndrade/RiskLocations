@@ -2,10 +2,12 @@ package br.ufg.antenado.antenado.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by diogojayme on 7/5/16.
  */
-public class Ocurrence {
+public class Occurrence implements Serializable{
     long id;
     double latitude;
     double longitude;
@@ -14,6 +16,7 @@ public class Ocurrence {
     @SerializedName("time_ago")
     String timeAgo;
     String severity;
+    boolean mine;
 
     public long getId() {
         return id;
@@ -69,5 +72,13 @@ public class Ocurrence {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public boolean isMine() {
+        return mine;
+    }
+
+    public void setMine(boolean mine) {
+        this.mine = mine;
     }
 }
