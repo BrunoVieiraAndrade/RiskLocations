@@ -46,5 +46,11 @@ public class Utils {
         return null;
     }
 
+    public static String mToKm(long count){
+        if (count < 1000) return count + " m";
+        int exp = (int) (Math.log(count) / Math.log(1000));
+        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(1000, exp), "km");
+
+    }
 
 }

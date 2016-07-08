@@ -32,11 +32,14 @@ import com.gun0912.tedpermission.TedPermission;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import br.ufg.antenado.antenado.Callback;
 import br.ufg.antenado.antenado.MapController;
 import br.ufg.antenado.antenado.R;
+import br.ufg.antenado.antenado.model.MarkerAddress;
 import br.ufg.antenado.antenado.model.Occurrence;
+import br.ufg.antenado.antenado.util.Utils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,20 +51,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     HashMap<Marker, Occurrence> markerInformation;
 
-    @Bind(R.id.main_toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.maps_top_container)
-    View topContainer;
-    @Bind(R.id.maps_bottom_container)
-    View bottomContainer;
-    @Bind(R.id.create_alert)
-    FloatingActionButton createAlert;
-    @Bind(R.id.alert_title)
-    TextView alertTitle;
-    @Bind(R.id.alert_description)
-    TextView alertdescription;
-    @Bind(R.id.time_ago)
-    TextView timeAgo;
+    @Bind(R.id.main_toolbar) Toolbar toolbar;
+    @Bind(R.id.maps_top_container) View topContainer;
+    @Bind(R.id.maps_bottom_container) View bottomContainer;
+    @Bind(R.id.create_alert) FloatingActionButton createAlert;
+    @Bind(R.id.alert_title) TextView alertTitle;
+    @Bind(R.id.alert_description) TextView alertdescription;
+    @Bind(R.id.time_ago) TextView timeAgo;
+    @Bind(R.id.distance) TextView distance;
+    @Bind(R.id.alert_address) TextView address;
 
 
     @Override
@@ -150,7 +148,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         topContainer.setVisibility(View.VISIBLE);
         bottomContainer.setVisibility(View.VISIBLE);
         createAlert.setVisibility(View.GONE);
-
+        MarkerAddress markerAddress = Utils.getAddress(this, new LatLng(occurrence.getLatitude(), occurrence.getLongitude()));
+        String fullAddress = String.format(Locale.ENGLISH, "%s - %s - %s", markerAddress.getAddress(), markerAddress.getCity(), markerAddress.getState());
+        String knowName = ", " + markerAddress.getKnownName();
+        fullAddress.replace(fullAddress, knowName);
+        address.setText(fullAddress);
         // Move the camera instantly to Sydney with a zoom of 15.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
 
@@ -173,10 +175,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             float[] results = new float[1];
             Location.distanceBetween(getMyLocation().getLatitude(), getMyLocation().getLongitude(),
                     marker.getPosition().latitude, marker.getPosition().longitude, results);
-            int km = (int) (results[0] / 1000);
-            System.out.println(km);
+            distance.setText(Utils.mToKm((long) results[0]));
 
         }
+
         return false;
     }
 
