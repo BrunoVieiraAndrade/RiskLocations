@@ -10,8 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiManager {
 
-    private static Retrofit retrofit;
-    private static ApiManager instance;
+    private static Retrofit retrofit = null;
+    private static ApiManager instance = null;
 
     public ApiManager(){
         Gson gson = new Gson();
