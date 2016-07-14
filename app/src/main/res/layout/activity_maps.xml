@@ -43,7 +43,6 @@
         android:id="@+id/maps_bottom_container"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:background="@color/colorWhite">
 

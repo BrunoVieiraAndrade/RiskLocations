@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -132,8 +131,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 markerInformation = new HashMap<>();
 
                 for (int i = 0; i < occurrences.size(); i++) {
-                    LatLng sydney = new LatLng(occurrences.get(i).getLatitude(), occurrences.get(i).getLongitude());
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(sydney).title(occurrences.get(i).getTitle()));
+                    LatLng latLng = new LatLng(occurrences.get(i).getLatitude(), occurrences.get(i).getLongitude());
+
+                    Marker  marker;
+
+                    if(occurrences.get(i).isMine()){
+                        marker = mMap.addMarker(new MarkerOptions()
+                                .position(latLng)
+                                .title(occurrences.get(i).getTitle())
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue)));
+                    }else{
+                        marker = mMap.addMarker(new MarkerOptions()
+                                .position(latLng)
+                                .title(occurrences.get(i).getTitle())
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)));
+                    }
+
                     markerInformation.put(marker, occurrences.get(i));
                 }
             }
@@ -194,18 +207,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             //O Usuário criou um ponto com sucesso
             if (requestCode == ALERT_CREATED) {
                 Occurrence occurrence = (Occurrence) data.getExtras().getSerializable("occurrence");
-                BitmapDescriptor markercolor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
+
+                LatLng location = new LatLng(occurrence.getLatitude(), occurrence.getLongitude());
+                Marker marker = null;
 
                 if (occurrence.getSeverity().equals("Risco Médio")) {
-                    markercolor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
+                    marker = mMap.addMarker(new MarkerOptions()
+                            .position(location)
+                            .title(occurrence.getTitle())
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)));
                 }
 
                 if (occurrence.isMine()) {
-                    markercolor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE);
+                    marker = mMap.addMarker(new MarkerOptions()
+                            .position(location)
+                            .title(occurrence.getTitle())
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue)));
+
                 }
 
-                LatLng location = new LatLng(occurrence.getLatitude(), occurrence.getLongitude());
-                Marker marker = mMap.addMarker(new MarkerOptions().position(location).title(occurrence.getTitle()).icon(markercolor));
+
                 markerInformation.put(marker, occurrence);
             }
         }
