@@ -35,7 +35,7 @@
             android:label="@string/title_activity_maps">
         </activity>
         <activity
-            android:name=".ui.AlertActivity"
+            android:name=".ui.CreateAlertActivity"
             android:parentActivityName=".ui.MapsActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.launcher.SplashActivity">

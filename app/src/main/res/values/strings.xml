@@ -5,4 +5,7 @@
     <string name="connection_problem">Ocorreu um erro. Tente novamente.</string>
     <string name="description_example">Fui roubado nesse caralho, o cara estava de bicicleta e roubando pra valer fez o limpa</string>
     <string name="address_sample">Casinha da Joana, rua 69</string>
+    <string name="refresh_menu_title">Refresh</string>
+    <string name="done_menu_title">Done</string>
+    <string name="conte_nos_o_que_aconteceu">Conte-nos o que aconteceu</string>
 </resources>

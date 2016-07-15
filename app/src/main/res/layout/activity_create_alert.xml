@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="br.ufg.antenado.antenado.ui.CreateAlertActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/alert_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        app:titleTextColor="@color/colorWhite"
+        app:subtitleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:id="@+id/activity_alert_general_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_centerInParent="true">
+
+        <EditText
+            android:id="@+id/alertTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Título"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp" />
+
+        <EditText
+            android:id="@+id/alertDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/conte_nos_o_que_aconteceu"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/alertTitle"/>
+
+        <Spinner
+            android:id="@+id/alert_severity"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/alertDescription">
+        </Spinner>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
