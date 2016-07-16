@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -116,9 +117,10 @@ public class MapUtils {
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng){
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
     }
 
-
-
+    public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int zoomScale){
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomScale));
+    }
 }

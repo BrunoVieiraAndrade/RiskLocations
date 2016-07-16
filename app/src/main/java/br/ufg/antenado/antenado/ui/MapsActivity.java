@@ -46,30 +46,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     public final static int ALERT_CREATED = 10;
+    LatLng goiania = new LatLng(-16.67923862, -49.25372601);
 
     private GoogleMap mMap;
     private HashMap<Marker, Occurrence> markerInformation;
 
-    @Bind(R.id.time_ago)
-    TextView timeAgo;
-    @Bind(R.id.distance)
-    TextView distance;
-    @Bind(R.id.main_toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.alert_address)
-    TextView address;
-    @Bind(R.id.alert_title)
-    TextView alertTitle;
-    @Bind(R.id.maps_top_container)
-    View topContainer;
-    @Bind(R.id.progress_bar)
-    ProgressBar progressBar;
-    @Bind(R.id.maps_bottom_container)
-    View bottomContainer;
-    @Bind(R.id.alert_description)
-    TextView alertDescription;
-    @Bind(R.id.create_alert)
-    FloatingActionButton createAlert;
+    @Bind(R.id.time_ago) TextView timeAgo;
+    @Bind(R.id.distance) TextView distance;
+    @Bind(R.id.main_toolbar) Toolbar toolbar;
+    @Bind(R.id.alert_address) TextView address;
+    @Bind(R.id.alert_title) TextView alertTitle;
+    @Bind(R.id.maps_top_container) View topContainer;
+
+    @Bind(R.id.maps_bottom_container) View bottomContainer;
+    @Bind(R.id.alert_description) TextView alertDescription;
+    @Bind(R.id.create_alert) FloatingActionButton createAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,38 +120,39 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
-        progressBar.setVisibility(View.INVISIBLE);
 
         //Pede permissão para pegar a localização atual
         new TedPermission(this)
                 .setPermissionListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted() {
+
                         if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
                             return;
                         }
 
                         mMap.setMyLocationEnabled(true);
+                        if(MapUtils.getMyLocation(MapsActivity.this) != null){
+                            MapUtils.zoomToLocation(mMap, new LatLng(MapUtils.getMyLocation(MapsActivity.this).getLatitude(), MapUtils.getMyLocation(MapsActivity.this).getLongitude()));
+                        }
                     }
 
                     @Override
                     public void onPermissionDenied(ArrayList<String> arrayList) {
-
+                        MapUtils.zoomToLocation(mMap, goiania, 13);
                     }
                 })
                 .setDeniedMessage("Adicione a permissão de Localização em Configurações.")
                 .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                 .check();
 
-        if (MapUtils.getMyLocation(this) != null) {
-            MapUtils.zoomToLocation(mMap, new LatLng(MapUtils.getMyLocation(this).getLatitude(), MapUtils.getMyLocation(this).getLongitude()));
-        }
-
         refreshMap();
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+
         Occurrence occurrence = markerInformation.get(marker);
         alertTitle.setText(occurrence.getTitle());
         alertDescription.setText(occurrence.getDescription());
@@ -218,7 +210,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void refreshMap() {
         //Busca as ocorrencias da API {/api/v1/occurrences}
-        progressBar.setVisibility(View.VISIBLE);
         MapController.listOccurrences(new Callback<List<Occurrence>>() {
             @Override
             public void onSuccess(List<Occurrence> occurrences) {
@@ -248,7 +239,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     markerInformation.put(marker, occurrences.get(i));
                 }
-                progressBar.setVisibility(View.VISIBLE);
             }
 
             @Override
