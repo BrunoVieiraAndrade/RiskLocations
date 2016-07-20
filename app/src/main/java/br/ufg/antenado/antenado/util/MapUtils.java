@@ -12,8 +12,10 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -102,26 +104,29 @@ public class MapUtils {
         Location.distanceBetween(myLocation.latitude, myLocation.longitude,
                 targetLocation.latitude, targetLocation.longitude, results);
 
-        textView.setText(MapUtils.mToKm((long) results[0]));
+        textView.setText(MapUtils.convertDistance((long) results[0]));
     }
 
     /*
      * Converte a distância em metros para km
      *
      */
-    public static String mToKm(long count){
+    public static String convertDistance(long count){
         if (count < 1000) return count + " m";
         int exp = (int) (Math.log(count) / Math.log(1000));
         return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(1000, exp), "km");
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng){
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 19));
-    }
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(latLng)
+                .zoom(12)
+                .bearing(300)
+                .tilt(30)
+                .build();
 
-    public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int zoomScale){
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomScale));
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        mMap.animateCamera(cameraUpdate);
     }
 
 

@@ -1,6 +1,7 @@
 package br.ufg.antenado.antenado.ui;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -75,9 +76,11 @@ public class CreateAlertActivity extends AppCompatActivity {
             localOccurrence.setTitle(alertTitle.getText().toString());
             localOccurrence.setDescription(alertDescription.getText().toString());
             localOccurrence.setTimeAgo("1 min");
-            if(MapUtils.getMyLocation(this) != null){
-                localOccurrence.setLatitude(MapUtils.getMyLocation(this).getLatitude());
-                localOccurrence.setLongitude(MapUtils.getMyLocation(this).getLongitude());
+
+            Location myLocation = MapUtils.getMyLocation(this);
+            if(myLocation != null){
+                localOccurrence.setLatitude(myLocation.getLatitude());
+                localOccurrence.setLongitude(myLocation.getLongitude());
             }
 
             localOccurrence.setMine(true);
