@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -33,14 +32,13 @@ import br.ufg.antenado.antenado.MapController;
 import br.ufg.antenado.antenado.R;
 import br.ufg.antenado.antenado.model.MarkerAddress;
 import br.ufg.antenado.antenado.model.Occurrence;
-import br.ufg.antenado.antenado.util.LatLngInterpolator;
 import br.ufg.antenado.antenado.util.MapUtils;
-import br.ufg.antenado.antenado.util.MarkerAnimation;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
     private HashMap<Marker, Occurrence> markerInformation;
@@ -117,8 +115,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             //permission already granted
             mMap.setMyLocationEnabled(true);
-            if(MapUtils.getMyLocation(MapsActivity.this) != null){
-                MapUtils.zoomToLocation(mMap, new LatLng(MapUtils.getMyLocation(MapsActivity.this).getLatitude(), MapUtils.getMyLocation(MapsActivity.this).getLongitude()));
+
+            Location location = MapUtils.getMyLocation(MapsActivity.this);
+
+            if(location != null){
+                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()));
             }
         }
 
@@ -139,7 +140,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) {
+    public boolean onMarkerClick(final Marker marker) {
         createAlert.setVisibility(View.INVISIBLE);
         Occurrence occurrence = markerInformation.get(marker);
         alertTitle.setText(occurrence.getTitle());
@@ -157,9 +158,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-
         MapUtils.zoomToLocation(mMap, marker.getPosition());
-
         Location location = MapUtils.getMyLocation(this);
 
         if (location != null) {
@@ -167,15 +166,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             MapUtils.setDistanceBetweenLocations(distance, myPosition, marker.getPosition());
         }
 
-        MarkerAnimation markerAnimation = new MarkerAnimation(marker, marker.getPosition(), new LatLngInterpolator.Spherical(), 100);
-        markerAnimation.animate();
-
-        return false;
+        return true;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if (requestCode == ALERT_CREATED && data != null) {
             Occurrence occurrence = (Occurrence) data.getExtras().getSerializable("occurrence");
             LatLng location = new LatLng(occurrence.getLatitude(), occurrence.getLongitude());
@@ -183,6 +178,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .position(location)
                     .title(occurrence.getTitle())
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue)));
+
             markerInformation.put(marker, occurrence);
         }
 
@@ -195,27 +191,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onSuccess(final List<Occurrence> occurrences) {
                 markerInformation = new HashMap<>();
 
-
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i < occurrences.size(); i++) {
                     LatLng latLng = new LatLng(occurrences.get(i).getLatitude(), occurrences.get(i).getLongitude());
 
                     Marker marker;
 
-                    marker = mMap.addMarker(new MarkerOptions()
-                            .position(latLng)
-                            .title(occurrences.get(i).getTitle()));
-//
-//                            if (occurrences.get(i).isMine()) {
-//
-//                            } else if (occurrences.get(i).getSeverity().equals("Risco Médio")) {
-//                                marker = mMap.addMarker(new MarkerOptions()
-//                                        .position(latLng)
-//                                        .title(occurrences.get(i).getTitle()));
-//                            }else {
-//                                marker = mMap.addMarker(new MarkerOptions()
-//                                        .position(latLng)
-//                                        .title(occurrences.get(i).getTitle()));
-//                            }
+                    if (occurrences.get(i).isMine()) {
+                        MarkerOptions markerOptions = new MarkerOptions()
+                                .title(occurrences.get(i).getTitle())
+                                .position(latLng)
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue));
+
+                        marker = mMap.addMarker(markerOptions);
+                    } else if (occurrences.get(i).getSeverity().equals("Risco Médio")) {
+                        MarkerOptions markerOptions = new MarkerOptions()
+                                .title(occurrences.get(i).getTitle())
+                                .position(latLng)
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker));
+
+                        marker = mMap.addMarker(markerOptions);
+                    }else {
+                        MarkerOptions markerOptions = new MarkerOptions()
+                                .title(occurrences.get(i).getTitle())
+                                .position(latLng)
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker));
+
+                        marker = mMap.addMarker(markerOptions);
+                    }
 
                     markerInformation.put(marker, occurrences.get(i));
                 }
@@ -230,12 +232,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case LOCATION_PERMISSIONS_GRANTED: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         mMap.setMyLocationEnabled(true);
+                        Location location = MapUtils.getMyLocation(this);
+
+                        if(location != null){
+                            MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()));
+                        }
                     }
                 }
             }
