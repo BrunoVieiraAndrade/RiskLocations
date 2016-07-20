@@ -3,9 +3,9 @@ package br.ufg.antenado.antenado.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -24,10 +23,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -37,19 +33,20 @@ import br.ufg.antenado.antenado.MapController;
 import br.ufg.antenado.antenado.R;
 import br.ufg.antenado.antenado.model.MarkerAddress;
 import br.ufg.antenado.antenado.model.Occurrence;
+import br.ufg.antenado.antenado.util.LatLngInterpolator;
 import br.ufg.antenado.antenado.util.MapUtils;
+import br.ufg.antenado.antenado.util.MarkerAnimation;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
-
-    public final static int ALERT_CREATED = 10;
-    LatLng goiania = new LatLng(-16.67923862, -49.25372601);
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
     private HashMap<Marker, Occurrence> markerInformation;
+
+    public final static int ALERT_CREATED = 10;
+    public static final int LOCATION_PERMISSIONS_GRANTED = 11;
 
     @Bind(R.id.time_ago) TextView timeAgo;
     @Bind(R.id.distance) TextView distance;
@@ -57,7 +54,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Bind(R.id.alert_address) TextView address;
     @Bind(R.id.alert_title) TextView alertTitle;
     @Bind(R.id.maps_top_container) View topContainer;
-
     @Bind(R.id.maps_bottom_container) View bottomContainer;
     @Bind(R.id.alert_description) TextView alertDescription;
     @Bind(R.id.create_alert) FloatingActionButton createAlert;
@@ -68,18 +64,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Alertas");
-            toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
-        }
-
         createView();
     }
 
     @Override
     public void onBackPressed() {
-        System.out.println();
         if (topContainer.getVisibility() == View.VISIBLE && bottomContainer.getVisibility() == View.VISIBLE) {
             topContainer.setVisibility(View.INVISIBLE);
             bottomContainer.setVisibility(View.INVISIBLE);
@@ -121,38 +110,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 
-        //Pede permissão para pegar a localização atual
-        new TedPermission(this)
-                .setPermissionListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted() {
-
-                        if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                            return;
-                        }
-
-                        mMap.setMyLocationEnabled(true);
-                        if(MapUtils.getMyLocation(MapsActivity.this) != null){
-                            MapUtils.zoomToLocation(mMap, new LatLng(MapUtils.getMyLocation(MapsActivity.this).getLatitude(), MapUtils.getMyLocation(MapsActivity.this).getLongitude()));
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionDenied(ArrayList<String> arrayList) {
-                        MapUtils.zoomToLocation(mMap, goiania, 13);
-                    }
-                })
-                .setDeniedMessage("Adicione a permissão de Localização em Configurações.")
-                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-                .check();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //permission not conceded, ask for permission asynchronously
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSIONS_GRANTED);
+        } else {
+            //permission already granted
+            mMap.setMyLocationEnabled(true);
+        }
 
         refreshMap();
     }
 
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        createAlert.setVisibility(View.VISIBLE);
+        topContainer.setVisibility(View.INVISIBLE);
+        bottomContainer.setVisibility(View.INVISIBLE);
+    }
+
+    @OnClick(R.id.create_alert)
+    void onCreateAlertClick() {
+        startActivityForResult(new Intent(this, CreateAlertActivity.class), ALERT_CREATED);
+    }
+
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         Occurrence occurrence = markerInformation.get(marker);
         alertTitle.setText(occurrence.getTitle());
         alertDescription.setText(occurrence.getDescription());
@@ -170,41 +154,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        Location myLocation = MapUtils.getMyLocation(this);
 
-        if (myLocation != null) {
-            MapUtils.setDistanceBetweenLocations(distance,
-                    new LatLng(myLocation.getLatitude(), myLocation.getLongitude()), marker.getPosition());
+        MapUtils.zoomToLocation(mMap, marker.getPosition());
+
+        Location location = MapUtils.getMyLocation(this);
+
+        if (location != null) {
+            LatLng myPosition = new LatLng(location.getLatitude(), location.getLatitude());
+            MapUtils.setDistanceBetweenLocations(distance, myPosition, marker.getPosition());
         }
 
+        MarkerAnimation markerAnimation = new MarkerAnimation(marker, marker.getPosition(), new LatLngInterpolator.Spherical(), 100);
+        markerAnimation.animate();
 
         return false;
     }
 
     @Override
-    public void onMapClick(LatLng latLng) {
-        createAlert.setVisibility(View.VISIBLE);
-        topContainer.setVisibility(View.INVISIBLE);
-        bottomContainer.setVisibility(View.INVISIBLE);
-    }
-
-    @OnClick(R.id.create_alert)
-    void onCreateAlertClick() {
-        startActivityForResult(new Intent(this, CreateAlertActivity.class), ALERT_CREATED);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == ALERT_CREATED && data!= null) {
+        if (requestCode == ALERT_CREATED && data != null) {
             Occurrence occurrence = (Occurrence) data.getExtras().getSerializable("occurrence");
             LatLng location = new LatLng(occurrence.getLatitude(), occurrence.getLongitude());
             Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(location)
-                        .title(occurrence.getTitle())
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue)));
+                    .position(location)
+                    .title(occurrence.getTitle())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue)));
             markerInformation.put(marker, occurrence);
-            }
+        }
 
     }
 
@@ -212,33 +189,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Busca as ocorrencias da API {/api/v1/occurrences}
         MapController.listOccurrences(new Callback<List<Occurrence>>() {
             @Override
-            public void onSuccess(List<Occurrence> occurrences) {
+            public void onSuccess(final List<Occurrence> occurrences) {
                 markerInformation = new HashMap<>();
 
-                for (int i = 0; i < occurrences.size(); i++) {
+
+                for (int i = 0; i < 2; i++) {
                     LatLng latLng = new LatLng(occurrences.get(i).getLatitude(), occurrences.get(i).getLongitude());
 
                     Marker marker;
 
-                    if (occurrences.get(i).isMine()) {
-                        marker = mMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title(occurrences.get(i).getTitle())
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue)));
-                    } else if (occurrences.get(i).getSeverity().equals("Risco Médio")) {
-                        marker = mMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title(occurrences.get(i).getTitle())
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)));
-                    } else {
-                        marker = mMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title(occurrences.get(i).getTitle())
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)));
-                    }
+                    marker = mMap.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .title(occurrences.get(i).getTitle()));
+//
+//                            if (occurrences.get(i).isMine()) {
+//
+//                            } else if (occurrences.get(i).getSeverity().equals("Risco Médio")) {
+//                                marker = mMap.addMarker(new MarkerOptions()
+//                                        .position(latLng)
+//                                        .title(occurrences.get(i).getTitle()));
+//                            }else {
+//                                marker = mMap.addMarker(new MarkerOptions()
+//                                        .position(latLng)
+//                                        .title(occurrences.get(i).getTitle()));
+//                            }
 
                     markerInformation.put(marker, occurrences.get(i));
                 }
+
             }
 
             @Override
@@ -248,5 +226,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case LOCATION_PERMISSIONS_GRANTED: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        mMap.setMyLocationEnabled(true);
+                    }
+                }
+            }
+        }
+    }
 
 }

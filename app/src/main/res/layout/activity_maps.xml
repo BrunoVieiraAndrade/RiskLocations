@@ -9,8 +9,7 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        app:titleTextColor="@color/colorWhite"
-        android:background="@color/colorPrimary" />
+        android:background="@color/primaryColor" />
 
     <fragment
         android:id="@+id/map"
