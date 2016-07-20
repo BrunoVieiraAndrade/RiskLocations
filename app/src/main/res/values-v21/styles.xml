@@ -8,7 +8,7 @@
                 <item name="colorAccent">@color/colorAccent</item>
                 <item name="android:textColorPrimary">@color/textAndIcons</item>
                 <item name="android:icon">@color/textAndIcons</item>
-                <item name="colorControlHighlight">@color/lightPrimaryColor</item>
+                <item name="android:colorPressedHighlight">@color/lightPrimaryColor</item>
                 <item name="android:windowActionBar">false</item>
         </style>
 </resources>

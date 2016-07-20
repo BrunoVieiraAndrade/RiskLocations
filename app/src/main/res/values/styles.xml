@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/darkPrimaryColor</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textAndIcons</item>
-        <item name="android:colorFocusedHighlight">@color/lightPrimaryColor</item>
+        <item name="android:colorPressedHighlight">@color/lightPrimaryColor</item>
         <item name="android:windowActionBar">false</item>
     </style>
 

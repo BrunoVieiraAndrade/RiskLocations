@@ -8,9 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import br.ufg.antenado.antenado.Callback;
@@ -42,7 +40,7 @@ public class CreateAlertActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         adapter = ArrayAdapter
-                .createFromResource(this, R.array.occurrences_severities, android.R.layout.simple_spinner_item);
+                .createFromResource(this, R.array.occurrences_severities, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
