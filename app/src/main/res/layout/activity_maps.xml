@@ -25,25 +25,14 @@
         android:layout_height="wrap_content"
         layout="@layout/include_alert_description" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/create_alert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="36dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_mode_edit_white_48dp"/>
 
     <RelativeLayout
         android:id="@+id/maps_bottom_container"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorWhite">
+        android:background="@drawable/map_info_bottom_bg">
 
         <TextView
             android:id="@+id/time_ago"
@@ -70,4 +59,17 @@
             android:drawableStart="@drawable/ic_communication_location_on"/>
 
     </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/create_alert"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="82dp"
+        android:src="@drawable/ic_add_white_48dp"/>
+
 </RelativeLayout>
