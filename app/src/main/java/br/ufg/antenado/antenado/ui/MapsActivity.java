@@ -117,6 +117,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             //permission already granted
             mMap.setMyLocationEnabled(true);
+            if(MapUtils.getMyLocation(MapsActivity.this) != null){
+                MapUtils.zoomToLocation(mMap, new LatLng(MapUtils.getMyLocation(MapsActivity.this).getLatitude(), MapUtils.getMyLocation(MapsActivity.this).getLongitude()));
+            }
         }
 
         refreshMap();
@@ -137,13 +140,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        createAlert.setVisibility(View.INVISIBLE);
         Occurrence occurrence = markerInformation.get(marker);
         alertTitle.setText(occurrence.getTitle());
         alertDescription.setText(occurrence.getDescription());
         timeAgo.setText(occurrence.getTimeAgo());
         topContainer.setVisibility(View.VISIBLE);
         bottomContainer.setVisibility(View.VISIBLE);
-        createAlert.setVisibility(View.GONE);
 
         //Pegar a localização e uma tarefa pesada, então colocamos em outra thread
         MapUtils.getMarkerAddress(this, new LatLng(occurrence.getLatitude(), occurrence.getLongitude()), new MapUtils.MarkerAddressListener() {
