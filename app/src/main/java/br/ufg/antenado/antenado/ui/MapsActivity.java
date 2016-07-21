@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -42,6 +43,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap mMap;
+    private Handler mainHandler;
     private HashMap<Marker, Occurrence> markerInformation;
 
     public final static int ALERT_CREATED = 10;
@@ -103,6 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void createView() {
+        mainHandler = new Handler();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -263,15 +266,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    boolean moving = false;
+
     @Override
-    public void onCameraChange(CameraPosition cameraPosition) {
-        System.out.println();
-        MapUtils.getMarkerAddress(this, cameraPosition.target, new MapUtils.MarkerAddressListener() {
-            @Override
-            public void onAddressRetrieved(MarkerAddress address) {
-                fixedMarkerAddress.setText(address.getAddress());
-            }
-        });
+    public void onCameraChange(final CameraPosition cameraPosition) {
+        if(!moving) {
+            moving = true;
+            MapUtils.getMarkerAddress(MapsActivity.this, cameraPosition.target, new MapUtils.MarkerAddressListener() {
+                @Override
+                public void onAddressRetrieved(MarkerAddress address) {
+                    fixedMarkerAddress.setText(address.getAddress());
+                    moving = false;
+                }
+            });
+        }
     }
 
 }
