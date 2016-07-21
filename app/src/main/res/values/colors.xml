@@ -6,8 +6,9 @@
     <color name="colorAccent">#FF5252</color>
     <color name="colorWhite">#ffffff</color>
     <color name="textAndIcons">#FFFFFF</color>
-    <color name="primaryText">#212121</color>
+    <color name="primaryText">#232323</color>
     <color name="secondaryText">#727272</color>
+    <color name="tertiaryText">#868686</color>
     <color name="colorDivider">#B6B6B6</color>
 
 </resources>

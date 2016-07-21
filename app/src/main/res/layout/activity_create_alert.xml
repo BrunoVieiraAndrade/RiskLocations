@@ -10,6 +10,7 @@
         android:id="@+id/alert_toolbar"
         android:layout_width="match_parent"
         android:layout_height="52dp"
+        android:minHeight="?attr/actionBarSize"
         android:elevation="2dp"
         android:background="@color/primaryColor" />
 

@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:textStyle="bold"
         android:layout_marginTop="32dp"
+        android:textColor="@color/primaryText"
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
@@ -24,7 +24,6 @@
         android:layout_below="@+id/alert_title"
         android:layout_centerHorizontal="true">
 
-
         <TextView
             android:id="@+id/alert_description"
             android:layout_width="wrap_content"
@@ -32,6 +31,7 @@
             android:layout_marginTop="16dp"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:textColor="@color/secondaryText"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp" />
     </RelativeLayout>
@@ -42,10 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:layout_below="@+id/alert_description_container"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/secondaryText"
+        android:layout_below="@+id/alert_description_container" />
 
 
 </RelativeLayout>
