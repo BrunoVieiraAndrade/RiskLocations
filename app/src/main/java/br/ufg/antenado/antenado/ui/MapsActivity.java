@@ -3,6 +3,7 @@ package br.ufg.antenado.antenado.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,10 +21,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -42,8 +46,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap mMap;
+    Circle circle;
     private LatLng centerLocation;
     private HashMap<Marker, Occurrence> markerInformation;
+    List<Marker> markers = new ArrayList<>();
 
     public final static int ALERT_CREATED = 10;
     public static final int LOCATION_PERMISSIONS_GRANTED = 11;
@@ -114,6 +120,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
         mMap.setOnCameraChangeListener(this);
+        circle = mMap.addCircle(new CircleOptions()
+                .center(new LatLng(-16.7059516, -49.241514))
+                .radius(5000)
+                .strokeColor(Color.TRANSPARENT));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -212,7 +222,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onSuccess(final List<Occurrence> occurrences) {
                 markerInformation = new HashMap<>();
-
                 for (int i = 0; i < occurrences.size(); i++) {
                     LatLng latLng = new LatLng(occurrences.get(i).getLatitude(), occurrences.get(i).getLongitude());
 
@@ -242,7 +251,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
 
                     markerInformation.put(marker, occurrences.get(i));
+                    markers.add(marker);
                 }
+
+                setMarkersVisibility();
 
             }
 
@@ -275,17 +287,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onCameraChange(final CameraPosition cameraPosition) {
-        centerLocation = new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude);
-
         if(!moving) {
             moving = true;
-            MapUtils.getMarkerAddress(MapsActivity.this, cameraPosition.target, new MapUtils.MarkerAddressListener() {
+            circle = mMap.addCircle(new CircleOptions()
+                    .center(cameraPosition.target)
+                    .radius(5000)
+                    .strokeColor(Color.TRANSPARENT));
+            centerLocation = new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude);
+            MapUtils.getMarkerAddress(this, cameraPosition.target, new MapUtils.MarkerAddressListener() {
                 @Override
-                public void onAddressRetrieved(MarkerAddress address) {
+                public void onAddressRetrieved(final MarkerAddress address) {
                     fixedMarkerAddress.setText(address.getAddress());
                     moving = false;
                 }
             });
+            setMarkersVisibility();
+        }
+    }
+
+    public void setMarkersVisibility(){
+        for (Marker marker: markers) {
+
+            float[] distance = new float[2];
+
+            Location.distanceBetween( marker.getPosition().latitude, marker.getPosition().longitude,
+                    circle.getCenter().latitude, circle.getCenter().longitude, distance);
+
+            if( distance[0] > circle.getRadius()  ){
+                marker.setVisible(false);
+            } else {
+                marker.setVisible(true);
+            }
         }
     }
 
