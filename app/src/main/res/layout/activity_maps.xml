@@ -11,6 +11,7 @@
         android:background="@color/primaryColor" />
 
     <RelativeLayout
+        android:id="@+id/fixed_marker_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="2dp"

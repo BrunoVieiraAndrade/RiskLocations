@@ -9,16 +9,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,7 +41,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
-        GoogleMap.OnMapClickListener {
+        GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap mMap;
     private HashMap<Marker, Occurrence> markerInformation;
@@ -55,6 +58,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Bind(R.id.maps_bottom_container) View bottomContainer;
     @Bind(R.id.alert_description) TextView alertDescription;
     @Bind(R.id.create_alert) FloatingActionButton createAlert;
+    @Bind(R.id.fixed_marker_address) TextView fixedMarkerAddress;
+    @Bind(R.id.fixed_marker_container) View fixedMarkerContainer;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +128,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(location != null){
                 MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()));
             }
+            MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
+                @Override
+                public void onAddressRetrieved(MarkerAddress address) {
+                    fixedMarkerAddress.setText(address.getAddress());
+                }
+            });
         }
 
         refreshMap();
@@ -129,6 +142,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapClick(LatLng latLng) {
+        fixedMarkerContainer.setVisibility(View.VISIBLE);
         createAlert.setVisibility(View.VISIBLE);
         topContainer.setVisibility(View.INVISIBLE);
         bottomContainer.setVisibility(View.INVISIBLE);
@@ -141,6 +155,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
+        fixedMarkerContainer.setVisibility(View.INVISIBLE);
         createAlert.setVisibility(View.INVISIBLE);
         Occurrence occurrence = markerInformation.get(marker);
         alertTitle.setText(occurrence.getTitle());
@@ -247,6 +262,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         }
+    }
+
+    @Override
+    public void onCameraChange(CameraPosition cameraPosition) {
+        System.out.println();
     }
 
 }
