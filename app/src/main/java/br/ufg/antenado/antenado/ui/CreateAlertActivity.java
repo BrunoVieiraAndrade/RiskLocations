@@ -12,6 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import br.ufg.antenado.antenado.Callback;
 import br.ufg.antenado.antenado.MapController;
 import br.ufg.antenado.antenado.R;
@@ -20,7 +27,7 @@ import br.ufg.antenado.antenado.util.MapUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CreateAlertActivity extends AppCompatActivity {
+public class CreateAlertActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     @Bind(R.id.alert_toolbar) Toolbar toolbar;
     @Bind(R.id.alertTitle) EditText alertTitle;
@@ -29,21 +36,34 @@ public class CreateAlertActivity extends AppCompatActivity {
 
     ArrayAdapter<CharSequence> adapter;
 
+    GoogleMap mMap;
+    double latitude;
+    double longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_alert);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
         if(getSupportActionBar()!= null) {
             getSupportActionBar().setTitle(getString(R.string.criar_alerta));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+
+        latitude = getIntent().getExtras().getDouble("latitude");
+        longitude = getIntent().getExtras().getDouble("longitude");
+
         adapter = ArrayAdapter
                 .createFromResource(this, R.array.occurrences_severities, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_alert);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -105,4 +125,16 @@ public class CreateAlertActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(new LatLng(latitude, longitude))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker));
+
+        mMap.addMarker(markerOptions);
+
+        MapUtils.zoomToLocation(mMap, new LatLng(latitude,longitude), MapUtils.ZOOM_FACTOR);
+    }
 }

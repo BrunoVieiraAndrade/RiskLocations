@@ -14,6 +14,24 @@
         android:elevation="2dp"
         android:background="@color/primaryColor" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+        <fragment
+            android:id="@+id/map_alert"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            tools:context=".ui.MapsActivity" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/top_shadow"/>
+    </RelativeLayout>
+
+
     <EditText
         android:id="@+id/alertTitle"
         android:layout_width="match_parent"

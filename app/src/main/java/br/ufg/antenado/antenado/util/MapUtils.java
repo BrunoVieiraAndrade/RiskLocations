@@ -10,8 +10,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -30,6 +28,8 @@ import br.ufg.antenado.antenado.model.MarkerAddress;
  * Created by diogojayme on 7/7/16.
  */
 public class MapUtils {
+
+    public static final int ZOOM_FACTOR = 16;
 
     //Listener para notificar a activity quando o endereço for carregado
     public static interface MarkerAddressListener{
@@ -119,10 +119,10 @@ public class MapUtils {
         return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(1000, exp), "km");
     }
 
-    public static void zoomToLocation(GoogleMap mMap, LatLng latLng){
+    public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int factor){
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng)
-                .zoom(12)
+                .zoom(factor)
                 .bearing(300)
                 .tilt(30)
                 .build();

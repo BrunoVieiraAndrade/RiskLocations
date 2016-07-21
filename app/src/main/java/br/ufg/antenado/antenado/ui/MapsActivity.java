@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -43,7 +42,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap mMap;
-    private Handler mainHandler;
+    private LatLng centerLocation;
     private HashMap<Marker, Occurrence> markerInformation;
 
     public final static int ALERT_CREATED = 10;
@@ -105,7 +104,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void createView() {
-        mainHandler = new Handler();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -128,14 +126,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Location location = MapUtils.getMyLocation(MapsActivity.this);
 
             if(location != null){
-                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()));
+                centerLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()), 19);
+
+                MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
+                    @Override
+                    public void onAddressRetrieved(MarkerAddress address) {
+                        fixedMarkerAddress.setText(address.getAddress());
+                    }
+                });
             }
-            MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
-                @Override
-                public void onAddressRetrieved(MarkerAddress address) {
-                    fixedMarkerAddress.setText(address.getAddress());
-                }
-            });
         }
 
         refreshMap();
@@ -144,6 +144,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapClick(LatLng latLng) {
+        moving = false;
         fixedMarkerContainer.setVisibility(View.VISIBLE);
         createAlert.setVisibility(View.VISIBLE);
         topContainer.setVisibility(View.INVISIBLE);
@@ -152,11 +153,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @OnClick(R.id.create_alert)
     void onCreateAlertClick() {
-        startActivityForResult(new Intent(this, CreateAlertActivity.class), ALERT_CREATED);
+        startActivityForResult(new Intent(this, CreateAlertActivity.class)
+                .putExtra("latitude", centerLocation.latitude)
+                .putExtra("longitude", centerLocation.longitude),
+                ALERT_CREATED);
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
+        moving = true;
         fixedMarkerContainer.setVisibility(View.INVISIBLE);
         createAlert.setVisibility(View.INVISIBLE);
         Occurrence occurrence = markerInformation.get(marker);
@@ -175,7 +180,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        MapUtils.zoomToLocation(mMap, marker.getPosition());
+        MapUtils.zoomToLocation(mMap, marker.getPosition(),  19);
         Location location = MapUtils.getMyLocation(this);
 
         if (location != null) {
@@ -258,7 +263,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Location location = MapUtils.getMyLocation(this);
 
                         if(location != null){
-                            MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()));
+                            MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()),  19);
                         }
                     }
                 }
@@ -270,6 +275,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onCameraChange(final CameraPosition cameraPosition) {
+        centerLocation = new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude);
+
         if(!moving) {
             moving = true;
             MapUtils.getMarkerAddress(MapsActivity.this, cameraPosition.target, new MapUtils.MarkerAddressListener() {
