@@ -31,6 +31,7 @@ public class MapUtils {
     //Listener para notificar a activity quando o endereço for carregado
     public static interface MarkerAddressListener{
         void onAddressRetrieved(MarkerAddress address);
+        void onAddressFailed(String message);
     }
 
     /*
@@ -46,28 +47,37 @@ public class MapUtils {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 try {
                     List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-                    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                    String city = addresses.get(0).getLocality();
-                    String state = addresses.get(0).getAdminArea();
-                    String country = addresses.get(0).getCountryName();
-                    String postalCode = addresses.get(0).getPostalCode();
-                    String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+                    if(addresses.size() != 0) {
+                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                        String city = addresses.get(0).getLocality();
+                        String state = addresses.get(0).getAdminArea();
+                        String country = addresses.get(0).getCountryName();
+                        String postalCode = addresses.get(0).getPostalCode();
+                        String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
 
-                    final MarkerAddress markerAddress = new MarkerAddress();
-                    markerAddress.setAddress(address);
-                    markerAddress.setCity(city);
-                    markerAddress.setState(state);
-                    markerAddress.setCountry(country);
-                    markerAddress.setPostalCode(postalCode);
-                    markerAddress.setKnownName(knownName);
+                        final MarkerAddress markerAddress = new MarkerAddress();
+                        markerAddress.setAddress(address);
+                        markerAddress.setCity(city);
+                        markerAddress.setState(state);
+                        markerAddress.setCountry(country);
+                        markerAddress.setPostalCode(postalCode);
+                        markerAddress.setKnownName(knownName);
 
-                    //Callback in the main thread
-                    mainHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            listener.onAddressRetrieved(markerAddress);
-                        }
-                    });
+                        //Callback in the main thread
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onAddressRetrieved(markerAddress);
+                            }
+                        });
+                    }else{
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onAddressFailed("Your location is not enabled");
+                            }
+                        });
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

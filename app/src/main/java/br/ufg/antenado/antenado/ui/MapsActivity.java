@@ -11,16 +11,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -55,6 +50,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int RADIUS = 3000;
     private GoogleMap mMap;
     Circle circle;
+    LatLng startPosition = new LatLng(-16.7059516, -49.241514);
     private LatLng centerLocation;
     private HashMap<Marker, Occurrence> markerInformation;
     List<Marker> markers = new ArrayList<>();
@@ -129,6 +125,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMapClickListener(this);
         mMap.setOnCameraChangeListener(this);
 
+        circle = mMap.addCircle(new CircleOptions()
+                .center(startPosition)
+                .radius(RADIUS)
+                .strokeColor(Color.TRANSPARENT));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -143,18 +143,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(location != null){
                 centerLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()), 19);
-                circle = mMap.addCircle(new CircleOptions()
-                        .center(new LatLng(centerLocation.latitude, centerLocation.longitude))
-                        .radius(RADIUS)
-                        .strokeColor(Color.TRANSPARENT));
 
                 MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
                     @Override
                     public void onAddressRetrieved(MarkerAddress address) {
                         fixedMarkerAddress.setText(address.getAddress());
                     }
+
+                    @Override
+                    public void onAddressFailed(String message) {
+                        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+                    }
                 });
+            }else {
+                MapUtils.zoomToLocation(mMap, startPosition, 15);
             }
+
         }
 
         refreshMap();
@@ -196,6 +200,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onAddressRetrieved(MarkerAddress markerAddress) {
                 String formattedAddress = String.format(Locale.ENGLISH, "%s - %s - %s", markerAddress.getAddress(), markerAddress.getCity(), markerAddress.getState());
                 address.setText(formattedAddress);
+            }
+
+            @Override
+            public void onAddressFailed(String message) {
+                Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -306,6 +315,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 @Override
                 public void onAddressRetrieved(final MarkerAddress address) {
                     fixedMarkerAddress.setText(address.getAddress());
+                }
+
+                @Override
+                public void onAddressFailed(String message) {
+                    Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
                 }
             });
             setMarkersVisibility();
