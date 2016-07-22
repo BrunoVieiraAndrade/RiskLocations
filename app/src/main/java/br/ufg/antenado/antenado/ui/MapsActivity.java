@@ -11,11 +11,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -42,14 +47,18 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static br.ufg.antenado.antenado.R.id.map;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
         GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
+    private static final int RADIUS = 3000;
     private GoogleMap mMap;
     Circle circle;
     private LatLng centerLocation;
     private HashMap<Marker, Occurrence> markerInformation;
     List<Marker> markers = new ArrayList<>();
+    boolean moving = false;
 
     public final static int ALERT_CREATED = 10;
     public static final int LOCATION_PERMISSIONS_GRANTED = 11;
@@ -60,13 +69,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Bind(R.id.alert_address) TextView address;
     @Bind(R.id.alert_title) TextView alertTitle;
     @Bind(R.id.maps_top_container) View topContainer;
+    @Bind(R.id.general_container) View generalContainer;
     @Bind(R.id.maps_bottom_container) View bottomContainer;
     @Bind(R.id.alert_description) TextView alertDescription;
     @Bind(R.id.create_alert) FloatingActionButton createAlert;
     @Bind(R.id.fixed_marker_address) TextView fixedMarkerAddress;
     @Bind(R.id.fixed_marker_container) View fixedMarkerContainer;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +118,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void createView() {
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
     }
 
@@ -120,10 +128,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
         mMap.setOnCameraChangeListener(this);
-        circle = mMap.addCircle(new CircleOptions()
-                .center(new LatLng(-16.7059516, -49.241514))
-                .radius(5000)
-                .strokeColor(Color.TRANSPARENT));
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -138,6 +143,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(location != null){
                 centerLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()), 19);
+                circle = mMap.addCircle(new CircleOptions()
+                        .center(new LatLng(centerLocation.latitude, centerLocation.longitude))
+                        .radius(RADIUS)
+                        .strokeColor(Color.TRANSPARENT));
 
                 MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
                     @Override
@@ -283,22 +292,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    boolean moving = false;
 
     @Override
     public void onCameraChange(final CameraPosition cameraPosition) {
         if(!moving) {
-            moving = true;
             circle = mMap.addCircle(new CircleOptions()
                     .center(cameraPosition.target)
-                    .radius(5000)
+                    .radius(RADIUS)
                     .strokeColor(Color.TRANSPARENT));
             centerLocation = new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude);
+
             MapUtils.getMarkerAddress(this, cameraPosition.target, new MapUtils.MarkerAddressListener() {
                 @Override
                 public void onAddressRetrieved(final MarkerAddress address) {
                     fixedMarkerAddress.setText(address.getAddress());
-                    moving = false;
                 }
             });
             setMarkersVisibility();

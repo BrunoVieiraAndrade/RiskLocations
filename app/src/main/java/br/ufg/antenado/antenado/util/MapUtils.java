@@ -24,9 +24,6 @@ import java.util.Locale;
 
 import br.ufg.antenado.antenado.model.MarkerAddress;
 
-/**
- * Created by diogojayme on 7/7/16.
- */
 public class MapUtils {
 
     public static final int ZOOM_FACTOR = 16;
