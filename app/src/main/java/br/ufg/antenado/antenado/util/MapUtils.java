@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 
@@ -39,7 +40,11 @@ public class MapUtils {
      *
      */
     public static void getMarkerAddress(final Context context, final LatLng latLng, final MarkerAddressListener listener){
-        final Handler handler = new Handler();
+
+        HandlerThread handlerThread = new HandlerThread("Background Thread");
+        handlerThread.start();
+        final Handler handler = new Handler(handlerThread.getLooper());
+
         final Handler mainHandler = new Handler(context.getMainLooper());
         handler.post(new Runnable() {
             @Override

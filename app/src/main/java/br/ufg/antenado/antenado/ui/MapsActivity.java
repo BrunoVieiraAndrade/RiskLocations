@@ -47,14 +47,14 @@ import static br.ufg.antenado.antenado.R.id.map;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
         GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
-    private static final int RADIUS = 3000;
+    private Circle circle;
     private GoogleMap mMap;
-    Circle circle;
-    LatLng startPosition = new LatLng(-16.7059516, -49.241514);
     private LatLng centerLocation;
+    private boolean moving = false;
+    private static final int RADIUS = 3000;
+    private List<Marker> markers = new ArrayList<>();
     private HashMap<Marker, Occurrence> markerInformation;
-    List<Marker> markers = new ArrayList<>();
-    boolean moving = false;
+    private LatLng startPosition = new LatLng(-16.7059516, -49.241514);
 
     public final static int ALERT_CREATED = 10;
     public static final int LOCATION_PERMISSIONS_GRANTED = 11;
@@ -208,7 +208,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        MapUtils.zoomToLocation(mMap, marker.getPosition(),  19);
+        MapUtils.zoomToLocation(mMap, marker.getPosition(),  16);
         Location location = MapUtils.getMyLocation(this);
 
         if (location != null) {
@@ -256,7 +256,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         MarkerOptions markerOptions = new MarkerOptions()
                                 .title(occurrences.get(i).getTitle())
                                 .position(latLng)
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker));
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_yellow));
 
                         marker = mMap.addMarker(markerOptions);
                     }else {
@@ -288,7 +288,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (requestCode) {
             case LOCATION_PERMISSIONS_GRANTED: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mMap.setMyLocationEnabled(true);
                         Location location = MapUtils.getMyLocation(this);
 
