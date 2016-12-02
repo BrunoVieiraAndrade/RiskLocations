@@ -18,14 +18,14 @@ android {
         }
     }
 }
-
-repositories {
-
-    jcenter{
-        url "http://jcenter.bintray.com/"
-    }
-}
-
+//
+//repositories {
+//
+//    jcenter{
+//        url "http://jcenter.bintray.com/"
+//    }
+//}
+//
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
