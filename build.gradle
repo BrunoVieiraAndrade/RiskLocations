@@ -2,12 +2,10 @@
 
 buildscript {
     repositories {
-        jcenter{
-            url "http://jcenter.bintray.com/"
-        }
+        jcenter()
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:2.2.1') {
+        classpath('com.android.tools.build:gradle:2.1.0') {
             force = true
         }
         classpath 'com.google.gms:google-services:3.0.0'
@@ -19,9 +17,7 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter{
-            url "http://jcenter.bintray.com/"
-        }
+        jcenter()
     }
 }
 
