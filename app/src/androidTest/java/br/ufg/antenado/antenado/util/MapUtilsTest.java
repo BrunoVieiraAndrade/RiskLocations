@@ -23,14 +23,14 @@ public class MapUtilsTest {
     @Test
     public void testConvertDistanceSmallerThan1KTest() {
 
-        String distanceConverted = MapUtils.convertDistance(999l);
+        String distanceConverted = MapUtils.convertMetersToKilometersIfNeeded(999l);
         Assert.assertEquals("999m", distanceConverted);
     }
 
     @Test
     public void testConvertDistanceBiggerThan1KTest() {
 
-        String distanceConverted = MapUtils.convertDistance(2000l);
+        String distanceConverted = MapUtils.convertMetersToKilometersIfNeeded(2000l);
         Assert.assertEquals("2km", distanceConverted);
     }
 }

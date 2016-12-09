@@ -127,7 +127,7 @@ public abstract class MapUtils {
      * Converte a distância em metros para km
      *
      */
-    private static String convertMetersToKilometersIfNeeded(long meters){
+    public static String convertMetersToKilometersIfNeeded(long meters){
         if (meters < 1000) {
             return meters + " m";
         }
