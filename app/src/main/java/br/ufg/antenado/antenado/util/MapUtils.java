@@ -31,10 +31,10 @@ public abstract class MapUtils {
     public static final int ZOOM_FACTOR = 16;
     private static final String TAG = "MapUtils";
     private static final int HOW_MANY_SORROUNDING_ADDRESSES_WE_WANT = 1;
-    final int MAX_DISTANCE = 1000;
-    final int BEARING_VALUE = 300;
-    final int TILT_VALUE = 30;
-    
+    private static final int METERS_IN_A_KILOMETER = 1000;
+    private static final int BEARING_VALUE = 300;
+    private static final int TILT_VALUE = 30;
+
     public interface MarkerAddressListener{
         void onAddressRetrieved(MarkerAddress address);
         void onAddressFailed(String message);
@@ -112,7 +112,7 @@ public abstract class MapUtils {
         //verifica se a permissão foi concedida
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return null;
+             return null;
         }
 
         return locationManager.getLastKnownLocation(locationManager
@@ -135,10 +135,10 @@ public abstract class MapUtils {
      * Converte a distância em metros para km
      *
      */
-    public static String convertDistance(long count){
-        if (count < MAX_DISTANCE) return count + " m";
-        int exp = (int) (Math.log(count) / Math.log(MAX_DISTANCE));
-        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(MAX_DISTANCE, exp), "km");
+    static String convertMetersToKilometersIfNeeded(long count){
+        if (count < METERS_IN_A_KILOMETER) return count + " m";
+        int exp = (int) (Math.log(count) / Math.log(METERS_IN_A_KILOMETER));
+        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(METERS_IN_A_KILOMETER, exp), "km");
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int factor){
