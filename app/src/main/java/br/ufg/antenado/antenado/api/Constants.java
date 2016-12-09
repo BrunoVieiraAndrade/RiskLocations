@@ -5,6 +5,10 @@ package br.ufg.antenado.antenado.api;
  */
 class Constants {
 
+    private Constants(){
+
+    }
+
     //Apiary URL for API
     public static final String URL = "http://private-576a8-antenado.apiary-mock.com";
 }

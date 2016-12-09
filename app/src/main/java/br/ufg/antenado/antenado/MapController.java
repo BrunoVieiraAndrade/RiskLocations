@@ -13,6 +13,10 @@ import retrofit2.Response;
  */
 public class MapController {
 
+    private MapController(){
+
+    }
+
     public static void listOccurrences(final Callback<List<Occurrence>> callback){
         Call<List<Occurrence>> call =  ApiManager.create(OcurrencesService.class).listOccurrences();
         call.enqueue(new retrofit2.Callback<List<Occurrence>>() {
