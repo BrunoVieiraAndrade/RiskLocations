@@ -103,8 +103,8 @@ public class CreateAlertActivity extends AppCompatActivity implements OnMapReady
 
             Location myLocation = MapUtils.getMyLocation(this);
             if(myLocation != null){
-                localOccurrence.setLatitude(myLocation.getLatitude());
-                localOccurrence.setLongitude(myLocation.getLongitude());
+                localOccurrence.setLatitude(latitude);
+                localOccurrence.setLongitude(longitude);
             }
 
             localOccurrence.setMine(true);
