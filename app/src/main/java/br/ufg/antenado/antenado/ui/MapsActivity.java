@@ -43,7 +43,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static br.ufg.antenado.antenado.R.id.decor_content_parent;
 import static br.ufg.antenado.antenado.R.id.map;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
@@ -64,7 +63,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Bind(R.id.time_ago)
     protected TextView timeAgo;
     @Bind(R.id.distance)
-    protected TextView distance;
+    protected TextView distanceTextView;
     @Bind(R.id.main_toolbar)
     protected Toolbar toolbar;
     @Bind(R.id.alert_address)
@@ -228,7 +227,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (location != null) {
             LatLng myPosition = new LatLng(location.getLatitude(), location.getLatitude());
-            MapUtils.setDistanceBetweenLocations(distance, myPosition, marker.getPosition());
+            MapUtils.setDistanceBetweenLocations(distanceTextView, myPosition, marker.getPosition());
         }
 
         return true;
