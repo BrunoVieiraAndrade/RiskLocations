@@ -30,11 +30,15 @@ public abstract class MapUtils {
 
     public static final int ZOOM_FACTOR = 16;
     private static final String TAG = "MapUtils";
+    private static final int HOW_MANY_SORROUNDING_ADDRESSES_WE_WANT = 1;
 
-    //Listener para notificar a activity quando o endereço for carregado
-    public static interface MarkerAddressListener{
+    public interface MarkerAddressListener{
         void onAddressRetrieved(MarkerAddress address);
         void onAddressFailed(String message);
+    }
+
+    private MapUtils() {
+        // private constructor to avoid instantiation
     }
 
     /*
@@ -53,14 +57,15 @@ public abstract class MapUtils {
             public void run() {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 try {
-                    List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-                    if(addresses.size() != 0) {
-                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                    List<Address> addresses = geocoder.getFromLocation(latLng.latitude,
+                                            latLng.longitude, HOW_MANY_SORROUNDING_ADDRESSES_WE_WANT);
+                    if(addresses.isEmpty()) {
+                        String address = addresses.get(0).getAddressLine(0);
                         String city = addresses.get(0).getLocality();
                         String state = addresses.get(0).getAdminArea();
                         String country = addresses.get(0).getCountryName();
                         String postalCode = addresses.get(0).getPostalCode();
-                        String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+                        String knownName = addresses.get(0).getFeatureName();
 
                         final MarkerAddress markerAddress = new MarkerAddress();
                         markerAddress.setAddress(address);

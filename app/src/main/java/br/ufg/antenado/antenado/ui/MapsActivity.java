@@ -148,7 +148,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (!weHaveBeenGrantedFineLocation()
                 || weHaveBeenGrantedCoarseLocation()) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSIONS_GRANTED);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSIONS_GRANTED);
         } else {
 
             mMap.setMyLocationEnabled(true);
