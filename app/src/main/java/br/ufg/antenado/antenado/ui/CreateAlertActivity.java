@@ -30,13 +30,13 @@ import butterknife.ButterKnife;
 public class CreateAlertActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     @Bind(R.id.alert_toolbar)
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     @Bind(R.id.alertTitle)
-    private EditText alertTitle;
+    protected EditText alertTitle;
     @Bind(R.id.alertDescription)
-    private EditText alertDescription;
+    protected EditText alertDescription;
     @Bind(R.id.alert_severity)
-    private Spinner spinner;
+    protected Spinner spinner;
 
     private ArrayAdapter<CharSequence> adapter;
 

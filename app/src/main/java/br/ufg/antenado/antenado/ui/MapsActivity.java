@@ -60,28 +60,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int LOCATION_PERMISSIONS_GRANTED = 11;
 
     @Bind(R.id.time_ago)
-    private TextView timeAgo;
+    protected TextView timeAgo;
     @Bind(R.id.distance)
-    private TextView distance;
+    protected TextView distance;
     @Bind(R.id.main_toolbar)
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     @Bind(R.id.alert_address)
-    private TextView address;
+    protected TextView address;
     @Bind(R.id.alert_title)
-    private TextView alertTitle;
+    protected TextView alertTitle;
     @Bind(R.id.maps_top_container)
-    private View topContainer;
-    @Bind(R.id.general_container) View generalContainer;
+    protected View topContainer;
+    @Bind(R.id.general_container) protected View generalContainer;
     @Bind(R.id.maps_bottom_container)
-    private View bottomContainer;
+    protected View bottomContainer;
     @Bind(R.id.alert_description)
-    private TextView alertDescription;
+    protected TextView alertDescription;
     @Bind(R.id.create_alert)
-    private FloatingActionButton createAlert;
+    protected FloatingActionButton createAlert;
     @Bind(R.id.fixed_marker_address)
-    private TextView fixedMarkerAddress;
+    protected TextView fixedMarkerAddress;
     @Bind(R.id.fixed_marker_container)
-    private View fixedMarkerContainer;
+    protected View fixedMarkerContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
