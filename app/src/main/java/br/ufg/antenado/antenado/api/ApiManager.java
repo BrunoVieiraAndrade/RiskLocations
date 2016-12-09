@@ -22,17 +22,19 @@ public class ApiManager {
     }
 
     public static void initialize(){
-        if(instance == null){
+        if (instance == null){
             instance = new ApiManager();
         }
     }
 
     public static <T> T create(final Class<T> tClass){
-        if(retrofit == null)
+        if (retrofit == null) {
             throw new NullPointerException("Retrofit is null");
+        }
 
-        if(tClass == null)
+        if (tClass == null) {
             throw new NullPointerException("Invalid call to class");
+        }
 
         return retrofit.create(tClass);
     }

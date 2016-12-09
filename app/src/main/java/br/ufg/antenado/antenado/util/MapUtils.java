@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -25,9 +26,10 @@ import java.util.Locale;
 
 import br.ufg.antenado.antenado.model.MarkerAddress;
 
-public class MapUtils {
+public abstract class MapUtils {
 
     public static final int ZOOM_FACTOR = 16;
+    private static final String TAG = "MapUtils";
 
     //Listener para notificar a activity quando o endereço for carregado
     public static interface MarkerAddressListener{
@@ -84,7 +86,7 @@ public class MapUtils {
                         });
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.d(TAG, "An error ocurred while trying to get the location: " + e.getMessage());
                 }
             }
         });
@@ -118,17 +120,19 @@ public class MapUtils {
         Location.distanceBetween(myLocation.latitude, myLocation.longitude,
                 targetLocation.latitude, targetLocation.longitude, results);
 
-        textView.setText(MapUtils.convertDistance((long) results[0]));
+        textView.setText(MapUtils.convertMetersToKilometersIfNeeded((long) results[0]));
     }
 
     /*
      * Converte a distância em metros para km
      *
      */
-    private static String convertDistance(long count){
-        if (count < 1000) return count + " m";
-        int exp = (int) (Math.log(count) / Math.log(1000));
-        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(1000, exp), "km");
+    private static String convertMetersToKilometersIfNeeded(long meters){
+        if (meters < 1000) {
+            return meters + " m";
+        }
+        int exp = (int) (Math.log(meters) / Math.log(1000));
+        return String.format(Locale.ENGLISH, "%.1f %s", meters / Math.pow(1000, exp), "km");
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int factor){

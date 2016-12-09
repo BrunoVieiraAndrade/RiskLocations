@@ -86,6 +86,8 @@ public class CreateAlertActivity extends AppCompatActivity implements OnMapReady
             case R.id.action_done:
                 onDoneClick();
                 break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
