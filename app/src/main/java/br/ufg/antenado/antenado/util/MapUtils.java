@@ -31,7 +31,10 @@ public abstract class MapUtils {
     public static final int ZOOM_FACTOR = 16;
     private static final String TAG = "MapUtils";
     private static final int HOW_MANY_SORROUNDING_ADDRESSES_WE_WANT = 1;
-
+    final int MAX_DISTANCE = 1000;
+    final int BEARING_VALUE = 300;
+    final int TILT_VALUE = 30;
+    
     public interface MarkerAddressListener{
         void onAddressRetrieved(MarkerAddress address);
         void onAddressFailed(String message);
@@ -132,20 +135,18 @@ public abstract class MapUtils {
      * Converte a distância em metros para km
      *
      */
-    public static String convertMetersToKilometersIfNeeded(long meters){
-        if (meters < 1000) {
-            return meters + " m";
-        }
-        int exp = (int) (Math.log(meters) / Math.log(1000));
-        return String.format(Locale.ENGLISH, "%.1f %s", meters / Math.pow(1000, exp), "km");
+    public static String convertDistance(long count){
+        if (count < MAX_DISTANCE) return count + " m";
+        int exp = (int) (Math.log(count) / Math.log(MAX_DISTANCE));
+        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(MAX_DISTANCE, exp), "km");
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int factor){
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng)
                 .zoom(factor)
-                .bearing(300)
-                .tilt(30)
+                .bearing(BEARING_VALUE)
+                .tilt(TILT_VALUE)
                 .build();
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);

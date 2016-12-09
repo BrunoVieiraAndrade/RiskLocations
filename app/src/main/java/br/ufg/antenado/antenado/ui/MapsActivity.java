@@ -48,6 +48,13 @@ import static br.ufg.antenado.antenado.R.id.map;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
         GoogleMap.OnMapClickListener, GoogleMap.OnCameraChangeListener {
 
+    final double INITIAL_LAT_POS = -16.7059516;
+    final double INITIAL_LNG_POS = -49.241514;
+    final int ARRAY_SIZE = 2;
+    final int OPTION19 = 19;
+    final int OPTION15 = 15;
+    final int OPTION16 = 16;
+
     private Circle circle;
     private GoogleMap mMap;
     private LatLng centerLocation;
@@ -55,7 +62,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int RADIUS = 3000;
     private List<Marker> markers = new ArrayList<>();
     private HashMap<Marker, Occurrence> markerInformation;
-    private LatLng startPosition = new LatLng(-16.7059516, -49.241514);
+    private LatLng startPosition = new LatLng(INITIAL_LAT_POS, INITIAL_LNG_POS);
 
     public final static int ALERT_CREATED = 10;
     private static final int LOCATION_PERMISSIONS_GRANTED = 11;
@@ -158,7 +165,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             if (location != null) {
                 centerLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(), location.getLongitude()), 19);
+                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()), OPTION19);
 
                 MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
                     @Override
@@ -171,8 +178,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
                     }
                 });
-            } else {
-                MapUtils.zoomToLocation(mMap, startPosition, 15);
+            }else {
+                MapUtils.zoomToLocation(mMap, startPosition, OPTION15);
             }
 
         }
@@ -224,7 +231,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
-        MapUtils.zoomToLocation(mMap, marker.getPosition(), 16);
+        MapUtils.zoomToLocation(mMap, marker.getPosition(), OPTION16);
         Location location = MapUtils.getMyLocation(this);
 
         if (location != null) {
@@ -359,7 +366,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setMarkersVisibility() {
         for (Marker marker : markers) {
 
-            float[] distance = new float[2];
+            float[] distance = new float[ARRAY_SIZE];
 
             Location.distanceBetween(marker.getPosition().latitude, marker.getPosition().longitude,
                     circle.getCenter().latitude, circle.getCenter().longitude, distance);

@@ -16,6 +16,9 @@ import static java.lang.Math.toRadians;
 
 public interface LatLngInterpolator {
     public LatLng interpolate(float fraction, LatLng a, LatLng b);
+    final int meridian180 = 180;
+    final int meridian360 = 360;
+    final double sphericalInterpolationFormula = 1E-6;
 
     public class Linear implements LatLngInterpolator {
         @Override
@@ -33,8 +36,8 @@ public interface LatLngInterpolator {
             double lngDelta = b.longitude - a.longitude;
 
             // Take the shortest path across the 180th meridian.
-            if (Math.abs(lngDelta) > 180) {
-                lngDelta -= Math.signum(lngDelta) * 360;
+            if (Math.abs(lngDelta) > meridian180) {
+                lngDelta -= Math.signum(lngDelta) * meridian360;
             }
             double lng = lngDelta * fraction + a.longitude;
             return new LatLng(lat, lng);
@@ -57,7 +60,7 @@ public interface LatLngInterpolator {
             // Computes Spherical interpolation coefficients.
             double angle = computeAngleBetween(fromLat, fromLng, toLat, toLng);
             double sinAngle = sin(angle);
-            if (sinAngle < 1E-6) {
+            if (sinAngle < sphericalInterpolationFormula) {
                 return from;
             }
             double a = sin((1 - fraction) * angle) / sinAngle;
@@ -78,8 +81,10 @@ public interface LatLngInterpolator {
             // Haversine's formula
             double dLat = fromLat - toLat;
             double dLng = fromLng - toLng;
-            return 2 * asin(sqrt(pow(sin(dLat / 2), 2) +
+            double angleCalculation = 2 * asin(sqrt(pow(sin(dLat / 2), 2) +
                     cos(fromLat) * cos(toLat) * pow(sin(dLng / 2), 2)));
+
+            return angleCalculation;
         }
     }
 }
