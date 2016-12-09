@@ -27,4 +27,11 @@ public class MapUtilsTest {
         Assert.assertEquals("999m", distanceConverted);
     }
 
+    @Test
+    public void testConvertDistanceBiggerThan1KTest() {
+
+        String distanceConverted = MapUtils.convertDistance(2000l);
+        Assert.assertEquals("2km", distanceConverted);
+    }
+
 }
