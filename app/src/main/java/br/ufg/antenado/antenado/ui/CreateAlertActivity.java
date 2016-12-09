@@ -95,7 +95,7 @@ public class CreateAlertActivity extends AppCompatActivity implements OnMapReady
 
     private void onDoneClick(){
 
-        if(alertTitle.getText().toString().equals("") || alertDescription.getText().toString().equals("")){
+        if("".equals(alertTitle.getText().toString()) || "".equals(alertDescription.getText().toString())){
             Snackbar.make(findViewById(android.R.id.content), "Preencha todos os campos", Snackbar.LENGTH_LONG).show();
         }else {
             final Occurrence localOccurrence = new Occurrence();
