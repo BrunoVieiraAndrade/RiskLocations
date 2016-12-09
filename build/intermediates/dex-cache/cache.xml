@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_0076d4bb6d061886212cdb0c9598ef348c0927e8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/pablo/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
         jumboMode="true"
         optimize="true"
@@ -18,6 +27,15 @@
         revision="23.0.2"
         sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
         <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_b9d42008c545be139c3d1664ff5844852b4eb7f8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/pablo/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_c394bc5e8f484e5d8020bd5d4c948675e6297cef/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -39,6 +57,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.0_874c39ab94594ac195ff43eb6b42cd5f7e19f619/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/pablo/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
         jumboMode="true"
         optimize="true"
@@ -54,6 +81,15 @@
         revision="23.0.2"
         sha1="69d90fd7fb70e54746e26c10454c220e40a775ce">
         <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/otto-1.3.7_87298cb3a0291ba81c38fe650f9f80691782e6b7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.1.1_731bc1b8088fa510b1e39c6c2114ab8e87000756/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -75,12 +111,48 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/gun0912.ted/tedpermission/1.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="703c95818950344722c5d545e0763f4ae92625ce">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/gun0912.ted-tedpermission-1.0.2_cc495c60a837e0d854e1b38220394e4254fb6687/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.1_0f3b3ad3651ddcd9f6b8fc6162e252ad1aabc531/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1fd04f23aaf899c8c40fdc7f5feee4ec7b65264a">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_da9f6f4bae411584e542120751bcf40c4047b016/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
         sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
         <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.0_11bd2b88ef33442a6afc73d1306e22092859b596/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
+        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.0_87b07ae9aad852b25eef699f3e320668ee21177e/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -111,83 +183,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_0076d4bb6d061886212cdb0c9598ef348c0927e8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_c394bc5e8f484e5d8020bd5d4c948675e6297cef/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.0_874c39ab94594ac195ff43eb6b42cd5f7e19f619/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.1.1_731bc1b8088fa510b1e39c6c2114ab8e87000756/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/gun0912.ted/tedpermission/1.0.2/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="703c95818950344722c5d545e0763f4ae92625ce">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/gun0912.ted-tedpermission-1.0.2_cc495c60a837e0d854e1b38220394e4254fb6687/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.1_0f3b3ad3651ddcd9f6b8fc6162e252ad1aabc531/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="56ceeb7e80b818709296d8713606be7bbc1a8dcb">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_da9f6f4bae411584e542120751bcf40c4047b016/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.2"
-        sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
-        <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.0_87b07ae9aad852b25eef699f3e320668ee21177e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.2"
-        sha1="2ee8cffffa4df5e7632febff7fb74f5878f29836">
+        sha1="ca9e2e22754261d268b1cf66432941ebd4127720">
         <dex dex="/home/pablo/AndroidStudioProjects/RiskLocations/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9c64a452e6fc2aa2949055d028427bd4eecd31a4/classes.dex" />
     </item>
 

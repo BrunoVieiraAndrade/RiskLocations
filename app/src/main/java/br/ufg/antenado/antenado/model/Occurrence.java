@@ -8,15 +8,16 @@ import java.io.Serializable;
  * Created by diogojayme on 7/5/16.
  */
 public class Occurrence implements Serializable{
-    long id;
-    double latitude;
-    double longitude;
-    String title;
-    String description;
+    private long id;
+    private double latitude;
+    private double longitude;
+    private String title;
+    private String description;
     @SerializedName("time_ago")
+    private
     String timeAgo;
-    String severity;
-    boolean mine;
+    private String severity;
+    private boolean mine;
 
     public long getId() {
         return id;
