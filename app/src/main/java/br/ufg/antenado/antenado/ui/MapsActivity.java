@@ -192,14 +192,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         bottomContainer.setVisibility(View.INVISIBLE);
     }
 
-    @OnClick(R.id.create_alert)
-    void onCreateAlertClick() {
-        startActivityForResult(new Intent(this, CreateAlertActivity.class)
-                        .putExtra("latitude", centerLocation.latitude)
-                        .putExtra("longitude", centerLocation.longitude),
-                ALERT_CREATED);
-    }
-
     @Override
     public boolean onMarkerClick(final Marker marker) {
         moving = true;
