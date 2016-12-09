@@ -33,5 +33,4 @@ public class MapUtilsTest {
         String distanceConverted = MapUtils.convertDistance(2000l);
         Assert.assertEquals("2km", distanceConverted);
     }
-
 }

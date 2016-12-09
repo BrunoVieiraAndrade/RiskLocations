@@ -142,6 +142,4 @@ public class MapUtils {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         mMap.animateCamera(cameraUpdate);
     }
-
-
 }
