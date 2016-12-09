@@ -28,6 +28,9 @@ import br.ufg.antenado.antenado.model.MarkerAddress;
 public class MapUtils {
 
     public static final int ZOOM_FACTOR = 16;
+    final int MAX_DISTANCE = 1000;
+    final int BEARING_VALUE = 300;
+    final int TILT_VALUE = 30;
 
     //Listener para notificar a activity quando o endereço for carregado
     public static interface MarkerAddressListener{
@@ -126,17 +129,17 @@ public class MapUtils {
      *
      */
     public static String convertDistance(long count){
-        if (count < 1000) return count + " m";
-        int exp = (int) (Math.log(count) / Math.log(1000));
-        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(1000, exp), "km");
+        if (count < MAX_DISTANCE) return count + " m";
+        int exp = (int) (Math.log(count) / Math.log(MAX_DISTANCE));
+        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(MAX_DISTANCE, exp), "km");
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int factor){
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng)
                 .zoom(factor)
-                .bearing(300)
-                .tilt(30)
+                .bearing(BEARING_VALUE)
+                .tilt(TILT_VALUE)
                 .build();
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
