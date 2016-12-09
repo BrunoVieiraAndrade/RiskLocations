@@ -72,7 +72,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected TextView alertTitle;
     @Bind(R.id.maps_top_container)
     protected View topContainer;
-    @Bind(R.id.general_container) protected View generalContainer;
+    @Bind(R.id.general_container)
+    protected View generalContainer;
     @Bind(R.id.maps_bottom_container)
     protected View bottomContainer;
     @Bind(R.id.alert_description)
@@ -154,9 +155,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             Location location = MapUtils.getMyLocation(MapsActivity.this);
 
-            if(location != null){
+            if (location != null) {
                 centerLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()), 19);
+                MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(), location.getLongitude()), 19);
 
                 MapUtils.getMarkerAddress(this, new LatLng(location.getLatitude(), location.getLongitude()), new MapUtils.MarkerAddressListener() {
                     @Override
@@ -169,7 +170,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
                     }
                 });
-            }else {
+            } else {
                 MapUtils.zoomToLocation(mMap, startPosition, 15);
             }
 
@@ -190,8 +191,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @OnClick(R.id.create_alert)
     void onCreateAlertClick() {
         startActivityForResult(new Intent(this, CreateAlertActivity.class)
-                .putExtra("latitude", centerLocation.latitude)
-                .putExtra("longitude", centerLocation.longitude),
+                        .putExtra("latitude", centerLocation.latitude)
+                        .putExtra("longitude", centerLocation.longitude),
                 ALERT_CREATED);
     }
 
@@ -209,20 +210,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         MapUtils.getMarkerAddress(this, new LatLng(occurrence.getLatitude(), occurrence.getLongitude()),
                 new MapUtils.MarkerAddressListener() {
-            @Override
-            public void onAddressRetrieved(MarkerAddress markerAddress) {
-                String formattedAddress = String.format(Locale.ENGLISH, "%s - %s - %s", markerAddress.getAddress(),
-                        markerAddress.getCity(), markerAddress.getState());
-                address.setText(formattedAddress);
-            }
+                    @Override
+                    public void onAddressRetrieved(MarkerAddress markerAddress) {
+                        String formattedAddress = String.format(Locale.ENGLISH, "%s - %s - %s", markerAddress.getAddress(),
+                                markerAddress.getCity(), markerAddress.getState());
+                        address.setText(formattedAddress);
+                    }
 
-            @Override
-            public void onAddressFailed(String message) {
-                Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onAddressFailed(String message) {
+                        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+                    }
+                });
 
-        MapUtils.zoomToLocation(mMap, marker.getPosition(),  16);
+        MapUtils.zoomToLocation(mMap, marker.getPosition(), 16);
         Location location = MapUtils.getMyLocation(this);
 
         if (location != null) {
@@ -273,7 +274,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_yellow));
 
                         marker = mMap.addMarker(markerOptions);
-                    }else {
+                    } else {
                         MarkerOptions markerOptions = new MarkerOptions()
                                 .title(occurrences.get(i).getTitle())
                                 .position(latLng)
@@ -301,15 +302,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_PERMISSIONS_GRANTED) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (weHaveBeenGrantedLocationPermissions()) {
-                    mMap.setMyLocationEnabled(true);
-                    Location location = MapUtils.getMyLocation(this);
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && weHaveBeenGrantedLocationPermissions()) {
 
-                    if (location != null) {
-                        MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(), location.getLongitude()), 19);
-                    }
+                mMap.setMyLocationEnabled(true);
+                Location location = MapUtils.getMyLocation(this);
+
+                if (location != null) {
+                    MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(), location.getLongitude()), 19);
                 }
+
             }
         }
     }
@@ -331,7 +333,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onCameraChange(final CameraPosition cameraPosition) {
-        if(!moving) {
+        if (!moving) {
             circle = mMap.addCircle(new CircleOptions()
                     .center(cameraPosition.target)
                     .radius(RADIUS)
@@ -353,15 +355,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private void setMarkersVisibility(){
-        for (Marker marker: markers) {
+    private void setMarkersVisibility() {
+        for (Marker marker : markers) {
 
             float[] distance = new float[2];
 
-            Location.distanceBetween( marker.getPosition().latitude, marker.getPosition().longitude,
+            Location.distanceBetween(marker.getPosition().latitude, marker.getPosition().longitude,
                     circle.getCenter().latitude, circle.getCenter().longitude, distance);
 
-            if( distance[0] > circle.getRadius()  ){
+            if (distance[0] > circle.getRadius()) {
                 marker.setVisible(false);
             } else {
                 marker.setVisible(true);
