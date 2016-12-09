@@ -36,7 +36,7 @@ class MarkerAnimation {
 		mMarker.setPosition(mLatLngInterpolator.interpolate(v, mStartPosition, mFinalPosition));
 
 		// Repeat till progress is complete.
-		return (t < 1);
+		return t < 1;
 	}
 
 	@Override
