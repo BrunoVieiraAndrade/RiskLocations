@@ -16,12 +16,15 @@ public class MapUtilsTest {
 
     @Test
     public void getMyLocationTest() {
+
         Assert.assertEquals(4, 4);
     }
 
     @Test
-    public void testConvertDistanceTest() {
+    public void testConvertDistanceSmallerThan1KTest() {
 
+        String distanceConverted = MapUtils.convertDistance(999l);
+        Assert.assertEquals("999m", distanceConverted);
     }
 
 }
