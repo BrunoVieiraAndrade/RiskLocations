@@ -139,8 +139,9 @@ public abstract class MapUtils {
         if (count < METERS_IN_A_KILOMETER) {
             return count + " m";
         }
-        int exp = (int) (Math.log(count) / Math.log(METERS_IN_A_KILOMETER));
-        return String.format(Locale.ENGLISH, "%.1f %s", count / Math.pow(METERS_IN_A_KILOMETER, exp), "km");
+        int exponent = (int) (Math.log(count) / Math.log(METERS_IN_A_KILOMETER));
+        return String.format(Locale.ENGLISH, "%.1f %s", count
+                / Math.pow(METERS_IN_A_KILOMETER, exponent), "km");
     }
 
     public static void zoomToLocation(GoogleMap mMap, LatLng latLng, int factor){
