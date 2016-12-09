@@ -13,7 +13,7 @@ public class ApiManager {
     private static Retrofit retrofit = null;
     private static ApiManager instance = null;
 
-    public ApiManager(){
+    private ApiManager(){
         Gson gson = new Gson();
         retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.URL)

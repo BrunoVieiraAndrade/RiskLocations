@@ -7,8 +7,8 @@ import android.view.animation.Interpolator;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
-public class MarkerAnimation {
-	final static Interpolator sInterpolator = new AccelerateDecelerateInterpolator();
+class MarkerAnimation {
+	private final static Interpolator sInterpolator = new AccelerateDecelerateInterpolator();
 
 	private final Marker mMarker;
 	private final LatLngInterpolator mLatLngInterpolator;

@@ -29,16 +29,20 @@ import butterknife.ButterKnife;
 
 public class CreateAlertActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    @Bind(R.id.alert_toolbar) Toolbar toolbar;
-    @Bind(R.id.alertTitle) EditText alertTitle;
-    @Bind(R.id.alertDescription) EditText alertDescription;
-    @Bind(R.id.alert_severity) Spinner spinner;
+    @Bind(R.id.alert_toolbar)
+    protected Toolbar toolbar;
+    @Bind(R.id.alertTitle)
+    protected EditText alertTitle;
+    @Bind(R.id.alertDescription)
+    protected EditText alertDescription;
+    @Bind(R.id.alert_severity)
+    protected Spinner spinner;
 
-    ArrayAdapter<CharSequence> adapter;
+    private ArrayAdapter<CharSequence> adapter;
 
-    GoogleMap mMap;
-    double latitude;
-    double longitude;
+    private GoogleMap mMap;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +91,7 @@ public class CreateAlertActivity extends AppCompatActivity implements OnMapReady
         return super.onOptionsItemSelected(item);
     }
 
-    public void onDoneClick(){
+    private void onDoneClick(){
 
         if(alertTitle.getText().toString().equals("") || alertDescription.getText().toString().equals("")){
             Snackbar.make(findViewById(android.R.id.content), "Preencha todos os campos", Snackbar.LENGTH_LONG).show();

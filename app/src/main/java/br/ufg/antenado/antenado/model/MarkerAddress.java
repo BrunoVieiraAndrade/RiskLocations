@@ -1,12 +1,12 @@
 package br.ufg.antenado.antenado.model;
 
 public class MarkerAddress {
-        String address ;
-        String city ;
-        String state;
-        String country;
-        String postalCode;
-        String knownName;
+        private String address ;
+        private String city ;
+        private String state;
+        private String country;
+        private String postalCode;
+        private String knownName;
 
         public String getAddress() {
             return address;

@@ -57,20 +57,31 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private LatLng startPosition = new LatLng(-16.7059516, -49.241514);
 
     public final static int ALERT_CREATED = 10;
-    public static final int LOCATION_PERMISSIONS_GRANTED = 11;
+    private static final int LOCATION_PERMISSIONS_GRANTED = 11;
 
-    @Bind(R.id.time_ago) TextView timeAgo;
-    @Bind(R.id.distance) TextView distance;
-    @Bind(R.id.main_toolbar) Toolbar toolbar;
-    @Bind(R.id.alert_address) TextView address;
-    @Bind(R.id.alert_title) TextView alertTitle;
-    @Bind(R.id.maps_top_container) View topContainer;
-    @Bind(R.id.general_container) View generalContainer;
-    @Bind(R.id.maps_bottom_container) View bottomContainer;
-    @Bind(R.id.alert_description) TextView alertDescription;
-    @Bind(R.id.create_alert) FloatingActionButton createAlert;
-    @Bind(R.id.fixed_marker_address) TextView fixedMarkerAddress;
-    @Bind(R.id.fixed_marker_container) View fixedMarkerContainer;
+    @Bind(R.id.time_ago)
+    protected TextView timeAgo;
+    @Bind(R.id.distance)
+    protected TextView distance;
+    @Bind(R.id.main_toolbar)
+    protected Toolbar toolbar;
+    @Bind(R.id.alert_address)
+    protected TextView address;
+    @Bind(R.id.alert_title)
+    protected TextView alertTitle;
+    @Bind(R.id.maps_top_container)
+    protected View topContainer;
+    @Bind(R.id.general_container) protected View generalContainer;
+    @Bind(R.id.maps_bottom_container)
+    protected View bottomContainer;
+    @Bind(R.id.alert_description)
+    protected TextView alertDescription;
+    @Bind(R.id.create_alert)
+    protected FloatingActionButton createAlert;
+    @Bind(R.id.fixed_marker_address)
+    protected TextView fixedMarkerAddress;
+    @Bind(R.id.fixed_marker_container)
+    protected View fixedMarkerContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,7 +245,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    public void refreshMap() {
+    private void refreshMap() {
         //Busca as ocorrencias da API {/api/v1/occurrences}
         MapController.listOccurrences(new Callback<List<Occurrence>>() {
             @Override
@@ -326,7 +337,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    public void setMarkersVisibility(){
+    private void setMarkersVisibility(){
         for (Marker marker: markers) {
 
             float[] distance = new float[2];
