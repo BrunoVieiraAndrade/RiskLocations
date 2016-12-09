@@ -146,10 +146,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //permission not conceded, ask for permission asynchronously
+
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSIONS_GRANTED);
         } else {
-            //permission already granted
+
             mMap.setMyLocationEnabled(true);
 
             Location location = MapUtils.getMyLocation(MapsActivity.this);
@@ -208,7 +208,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         topContainer.setVisibility(View.VISIBLE);
         bottomContainer.setVisibility(View.VISIBLE);
 
-        //Pegar a localização e uma tarefa pesada, então colocamos em outra thread
+
         MapUtils.getMarkerAddress(this, new LatLng(occurrence.getLatitude(), occurrence.getLongitude()), new MapUtils.MarkerAddressListener() {
             @Override
             public void onAddressRetrieved(MarkerAddress markerAddress) {
@@ -249,7 +249,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void refreshMap() {
-        //Busca as ocorrencias da API {/api/v1/occurrences}
+
         MapController.listOccurrences(new Callback<List<Occurrence>>() {
             @Override
             public void onSuccess(final List<Occurrence> occurrences) {
