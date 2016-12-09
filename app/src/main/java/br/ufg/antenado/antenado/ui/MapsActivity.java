@@ -132,6 +132,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+    @SuppressWarnings("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -144,9 +145,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .radius(RADIUS)
                 .strokeColor(Color.TRANSPARENT));
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+        if (!weHaveBeenGrantedFineLocation()
+                || weHaveBeenGrantedCoarseLocation()) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSIONS_GRANTED);
         } else {
 
@@ -178,7 +178,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         refreshMap();
     }
 
-
     @Override
     public void onMapClick(LatLng latLng) {
         moving = false;
@@ -208,11 +207,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         topContainer.setVisibility(View.VISIBLE);
         bottomContainer.setVisibility(View.VISIBLE);
 
-
-        MapUtils.getMarkerAddress(this, new LatLng(occurrence.getLatitude(), occurrence.getLongitude()), new MapUtils.MarkerAddressListener() {
+        MapUtils.getMarkerAddress(this, new LatLng(occurrence.getLatitude(), occurrence.getLongitude()),
+                new MapUtils.MarkerAddressListener() {
             @Override
             public void onAddressRetrieved(MarkerAddress markerAddress) {
-                String formattedAddress = String.format(Locale.ENGLISH, "%s - %s - %s", markerAddress.getAddress(), markerAddress.getCity(), markerAddress.getState());
+                String formattedAddress = String.format(Locale.ENGLISH, "%s - %s - %s", markerAddress.getAddress(),
+                        markerAddress.getCity(), markerAddress.getState());
                 address.setText(formattedAddress);
             }
 
@@ -266,7 +266,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_blue));
 
                         marker = mMap.addMarker(markerOptions);
-                    } else if (occurrences.get(i).getSeverity().equals("Risco Médio")) {
+                    } else if ("Risco Médio".equals(occurrences.get(i).getSeverity())) {
                         MarkerOptions markerOptions = new MarkerOptions()
                                 .title(occurrences.get(i).getTitle())
                                 .position(latLng)
@@ -297,26 +297,35 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
+    @SuppressWarnings("MissingPermission")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case LOCATION_PERMISSIONS_GRANTED:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        mMap.setMyLocationEnabled(true);
-                        Location location = MapUtils.getMyLocation(this);
+        if (requestCode == LOCATION_PERMISSIONS_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (weHaveBeenGrantedLocationPermissions()) {
+                    mMap.setMyLocationEnabled(true);
+                    Location location = MapUtils.getMyLocation(this);
 
-                        if(location != null){
-                            MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(),location.getLongitude()),  19);
-                        }
+                    if (location != null) {
+                        MapUtils.zoomToLocation(mMap, new LatLng(location.getLatitude(), location.getLongitude()), 19);
                     }
                 }
-                break;
-
-            default:
-                break;
-
+            }
         }
+    }
+
+    private boolean weHaveBeenGrantedLocationPermissions() {
+        return weHaveBeenGrantedFineLocation() && weHaveBeenGrantedCoarseLocation();
+    }
+
+    private boolean weHaveBeenGrantedFineLocation() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED;
+    }
+
+    private boolean weHaveBeenGrantedCoarseLocation() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED;
     }
 
 
